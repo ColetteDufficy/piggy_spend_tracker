@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
-from flask import Blueprint
-from models.museum import Museum
-import repositories.museum_repository as museum_repository
+# from flask import Flask, render_template, request, redirect
+# from flask import Blueprint
+# from models.museum import Museum
+# import repositories.museum_repository as museum_repository
 
-museums_blueprint = Blueprint("museums", __name__)
+# museums_blueprint = Blueprint("museums", __name__)
 #blueprint is a place to store lots of routes. ie @app.routes
 
 

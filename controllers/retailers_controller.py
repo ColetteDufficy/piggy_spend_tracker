@@ -20,5 +20,5 @@ retailers_blueprint = Blueprint("retailers", __name__)
 # GET '/retailers'
 @retailers_blueprint.route("/retailers")
 def retailers():
-    retailers = retailer_repository.select_all() #the way to access the DB is via the task_respoitory
-    return render_template("retailers/index.html", all_retailers = retailers)
+    retailers = retailer_repository.select_all() #the way to access the DB is via the retailer_respository
+    return render_template("retailers/new.html", all_retailers = retailers)

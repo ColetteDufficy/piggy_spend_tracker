@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS retailers;
 DROP TABLE IF EXISTS labels;
 
 
-
 CREATE TABLE retailers (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
