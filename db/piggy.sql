@@ -23,3 +23,5 @@ CREATE TABLE transactions (
     value INT
 );
 
+INSERT INTO retailers (name, active) VALUES ('Guilllivers Toys', True)
+-- INSERT INTO works (title, artist, year, museum_id) VALUES ('The Aficionado', 'Pablo Picasso', 1936, 1); 
