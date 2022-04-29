@@ -22,6 +22,7 @@ CREATE TABLE transactions (
     value INT NOT NULL
 );
 
+INSERT INTO retailers (name, active) VALUES ('Landlord', True);
 INSERT INTO retailers (name, active) VALUES ('Amazon', True);
 INSERT INTO retailers (name, active) VALUES ('Tesco', True);
 INSERT INTO retailers (name, active) VALUES ('Costa', True);
@@ -29,8 +30,8 @@ INSERT INTO retailers (name, active) VALUES ('Disney+', True);
 INSERT INTO retailers (name, active) VALUES ('Netflix', True);
 INSERT INTO retailers (name, active) VALUES ('Deliveroo', True);
 INSERT INTO retailers (name, active) VALUES ('The Dragonfly', True);
-INSERT INTO retailers (name, active) VALUES ('Landlord', True);
 
+INSERT INTO labels (name, active) VALUES ('Rent', True);
 INSERT INTO labels (name, active) VALUES ('Groceries', True);
 INSERT INTO labels (name, active) VALUES ('Take Away', True);
 INSERT INTO labels (name, active) VALUES ('Petrol', True);
@@ -38,7 +39,7 @@ INSERT INTO labels (name, active) VALUES ('Coffee', True);
 INSERT INTO labels (name, active) VALUES ('Subscriptions', True);
 INSERT INTO labels (name, active) VALUES ('Drinks', True);
 INSERT INTO labels (name, active) VALUES ('Misc', True);
-INSERT INTO labels (name, active) VALUES ('Rent', True);
 
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (1, 1, 50);
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (2, 3, 99);
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (1, 1, 700);
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 4, 55);
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 2, 40);
