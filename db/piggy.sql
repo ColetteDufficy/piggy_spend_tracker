@@ -19,7 +19,7 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     retailer_id INT REFERENCES retailers(id) ON DELETE SET NULL,
     label_id INT REFERENCES labels(id) ON DELETE SET NULL,
-    value INT NOT NULL
+    value Numeric(19,2) NOT NULL
 );
 
 INSERT INTO retailers (name, active) VALUES ('Landlord', True);
