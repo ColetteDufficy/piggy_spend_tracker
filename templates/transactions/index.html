@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<hr>
+<h4>Add new transaction:</h4>
+
+<div>
+    <form class="form" action="/transactions" method="post">
+
+    <label for="retailer">Retailer name:</label>
+    <br>
+    <select id="retailer" name="retailer_id">
+      {% for retailer in all_retailers %}
+        <option value="{{ retailer.id }}">{{ retailer.name }}</option>
+      {% endfor %}
+    </select>
+<br>
+<button> <a href="/retailers">Need to add a new retailer?</a> </button>
+<br>
+<br>
+
+    <label for="label">Label name:</label>
+    <br>
+    <select id="label" name="label_id">
+      {% for label in all_labels %}
+        <option value="{{ label.id }}">{{ label.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+<button> <a href="/labels">Need to add a new label?</a> </button>
+<br>
+<br>
+<label for="value">Value amount: £</label>
+<br>
+<div>
+    <label for="value"></label>
+    <input type="number" min="1" step="0.01" name="value" value="value" placeholder="£" id="value" required >
+    </div>   
+    
+
+  </div>
+<br>
+    <input type="submit" value="Save">
+  </form> 
+<br>
+<br>
+<hr>
+<h4>Total Spend so far this month: £££</h4>
+
+<h4>List of tranactions:</h4>
+<p>transaction 1</p>
+<p>transaction 2</p>
+<p>transaction 3</p>
+<p>transaction 4</p>
+  
+
+{% endblock %}

@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 
@@ -24,7 +25,22 @@ transactions_blueprint = Blueprint("transactions", __name__)
 # GET '/transactions'
 # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
 # this is the first step. See CREATE for the second step)
-# @retailers_blueprint.route("/retailers")
-# def retailers():
-#     retailers = retailer_repository.select_all_alphabetically() #the way to access the DB is via the retailer_respository
-#     return render_template("retailers/index.html", all_retailers = retailers)
+@transactions_blueprint.route("/transactions")
+def transactions():
+    transactions = transaction_repository.select_all() 
+    retailers = retailer_repository.select_all_alphabetically()
+    labels = label_repository.select_all_alphabetically()
+    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels)
+
+
+
+# # INDEX
+# # GET '/transactions'
+# # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
+# # this is the first step. See CREATE for the second step)
+# @transactions_blueprint.route("/transactions", methods=['POST'])
+# def transactions():
+#     transactions = transaction_repository.select_all() 
+#     retailers = retailer_repository.select_all_alphabetically()
+#     labels = label_repository.select_all_alphabetically()
+#     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels)

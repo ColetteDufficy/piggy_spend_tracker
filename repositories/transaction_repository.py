@@ -1,6 +1,9 @@
 from db.run_sql import run_sql
 
+from models.retailer import Retailer
+from models.label import Label
 from models.transaction import Transaction #importing the class of Retailer to be used in CRUD
+
 import repositories.retailer_repository as retailer_repository #import everthing under the name 'retailer_repository'
 import repositories.label_repository as label_repository #import everthing under the name 'retailer_repository'
 
@@ -45,6 +48,20 @@ def select_all():
     return transactions 
 
 
+def retailer(transaction):
+    sql = "SELECT * FROM retailers WHERE id = %s"
+    values = [transaction.retailer.id]
+    results = run_sql(sql, values)[0]
+    retailer = Retailer(results['name'], results['active'], results['id'])
+    return retailer
+
+
+def label(transaction):
+    sql = "SELECT * FROM labels WHERE id = %s"
+    values = [transaction.label.id]
+    results = run_sql(sql, values)[0]
+    label = Label(results['name'], results['active'], results['id'])
+    return label
 
 
 #DELETE_ALL
