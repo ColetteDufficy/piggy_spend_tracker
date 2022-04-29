@@ -25,12 +25,12 @@ transactions_blueprint = Blueprint("transactions", __name__)
 # # GET '/transactions'
 # # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
 # # this is the first step. See CREATE for the second step)
-# @transactions_blueprint.route("/transactions")
-# def transactions():
-#     transactions = transaction_repository.select_all() 
-#     retailers = retailer_repository.select_all_alphabetically()
-#     labels = label_repository.select_all_alphabetically()
-#     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels)
+@transactions_blueprint.route("/transactions")
+def transactions():
+    transactions = transaction_repository.select_all() 
+    retailers = retailer_repository.select_all_alphabetically()
+    labels = label_repository.select_all_alphabetically()
+    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels)
 
 
 

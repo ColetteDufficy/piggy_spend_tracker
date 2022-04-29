@@ -42,16 +42,40 @@
 <br>
     <input type="submit" value="Save">
   </form> 
-<br>
+
+  <!-- end of top part -->
+
+  <br>
 <br>
 <hr>
 <h4>Total Spend so far this month: £££</h4>
 
-<h4>List of tranactions:</h4>
-<p>transaction 1</p>
-<p>transaction 2</p>
-<p>transaction 3</p>
-<p>transaction 4</p>
+<h4>List of transactions:</h4>
+
+<div class="container_details">
+
+
+    {% for transaction in all_transactions %}
+      
+    <div class="full_item">
+    
+      <div class="details">
+            
+              <p>{{ transaction.retailer.name }}</p>
+              <p>{{ transaction.label.name }}</p>
+              <p>£{{ transaction.value }}</p>        
+              
+             
+        </div>
+    
+      </div> 
+    
+     
+      <hr>
+    
+    
+    {% endfor %}
+    </div>
   
 
 {% endblock %}

@@ -42,4 +42,4 @@ INSERT INTO labels (name, active) VALUES ('Misc', True);
 
 INSERT INTO transactions (retailer_id , label_id, value) VALUES (1, 1, 700);
 INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 4, 55);
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 2, 40);
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 2, 42.35);

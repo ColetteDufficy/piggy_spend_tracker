@@ -1,4 +1,3 @@
-from controllers.transactions_controller import transactions
 from db.run_sql import run_sql
 
 from models.retailer import Retailer
@@ -29,7 +28,7 @@ def save(transaction):
     return transaction
 
 
-#SELECT_ALL
+# #SELECT_ALL
 def select_all():  
     transactions = [] 
 
@@ -49,75 +48,75 @@ def select_all():
     return transactions 
 
 
-def retailer(transaction):
-    sql = "SELECT * FROM retailers WHERE id = %s"
-    values = [transaction.retailer.id]
-    results = run_sql(sql, values)[0]
-    retailer = Retailer(results['name'], results['active'], results['id'])
-    return retailer
+# def retailer(transaction):
+#     sql = "SELECT * FROM retailers WHERE id = %s"
+#     values = [transaction.retailer.id]
+#     results = run_sql(sql, values)[0]
+#     retailer = Retailer(results['name'], results['active'], results['id'])
+#     return retailer
 
 
-def label(transaction):
-    sql = "SELECT * FROM labels WHERE id = %s"
-    values = [transaction.label.id]
-    results = run_sql(sql, values)[0]
-    label = Label(results['name'], results['active'], results['id'])
-    return label
+# def label(transaction):
+#     sql = "SELECT * FROM labels WHERE id = %s"
+#     values = [transaction.label.id]
+#     results = run_sql(sql, values)[0]
+#     label = Label(results['name'], results['active'], results['id'])
+#     return label
 
 
 
-#SELECT_BY_ID
-def select(id):
-    transaction = None
-    sql = """
-        SELECT * FROM transactions 
-        WHERE id = %s
-    """ 
-    values = [id] 
-    result = run_sql(sql, values)[0]
+# #SELECT_BY_ID
+# def select(id):
+#     transaction = None
+#     sql = """
+#         SELECT * FROM transactions 
+#         WHERE id = %s
+#     """ 
+#     values = [id] 
+#     result = run_sql(sql, values)[0]
     
-    if result is not None:
-        retailer = retailer_repository.select(result['retailer_id'])
-        label = label_repository.select(result['label_id']) 
-        transaction = Transaction(
-            retailer,
-            label, 
-            result['value'], 
-            result['id'] 
-            )
-    return transaction
+#     if result is not None:
+#         retailer = retailer_repository.select(result['retailer_id'])
+#         label = label_repository.select(result['label_id']) 
+#         transaction = Transaction(
+#             retailer,
+#             label, 
+#             result['value'], 
+#             result['id'] 
+#             )
+#     return transaction
 
 
 
-#DELETE_ALL
-def delete_all():
-    sql = "DELETE FROM transactions" 
-    run_sql(sql)
+# #DELETE_ALL
+# def delete_all():
+#     sql = "DELETE FROM transactions" 
+#     run_sql(sql)
     
     
     
-#DELETE_BY_ID
-def delete(id):
-    sql = """
-        DELETE FROM transactions 
-        WHERE id = %s
-    """ 
-    values = [id]
-    run_sql(sql, values)
+# #DELETE_BY_ID
+# def delete(id):
+#     sql = """
+#         DELETE FROM transactions 
+#         WHERE id = %s
+#     """ 
+#     values = [id]
+#     run_sql(sql, values)
     
 
-#UPDATE 
-def update(transaction):
-    sql = """
-        UPDATE transactions 
-        SET (retailer_id, label_id, value) = (%s, %s, %s) 
-        WHERE id = %s
-    """
-    values = [
-        transaction.retailer.id, 
-        transaction.label.id, 
-        transaction.value, 
-        transaction.id
-        ]
-    run_sql(sql, values) 
+# #UPDATE 
+# def update(transaction):
+#     sql = """
+#         UPDATE transactions 
+#         SET (retailer_id, label_id, value) = (%s, %s, %s) 
+#         WHERE id = %s
+#     """
+#     values = [
+#         transaction.retailer.id, 
+#         transaction.label.id, 
+#         transaction.value, 
+#         transaction.id
+#         ]
+#     run_sql(sql, values) 
     
