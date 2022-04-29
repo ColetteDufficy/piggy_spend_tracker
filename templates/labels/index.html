@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<hr>
+<h4>Add new label:</h4>
+<form class="form" action="/labels" method="post">
+    <label for="name"></label>
+    <input type="text" name="name" placeholder="Enter label name here" id="name">
+    <input type="submit" value="Save">
+  </form> 
+<br>
+<br>
+
+<hr>
+<br>
+<br>
+<a href="/transactions">Return to new transaction</a>
+<br>
+<br>
+<hr>
+
+<h4>Edit label details:</h4>
+
+<div class="list_of_all">
+
+    <h4>Active Labels</h4>
+        {% for label in all_labels %}
+            {% if label.active == True %}
+            <h4>{{label.name}} </h4>
+                <form action="/labels/{{label.id}}/edit" method="GET">
+                <input type="submit" value="Edit">
+                </form>
+                <form action="/labels/{{ label.id }}/delete" method="POST">
+                <input type="submit" value="Delete">
+                </form>
+            {% endif %}
+        {% endfor %}
+
+        <hr>
+        <hr>
+    <h4>Inactive Labels </h4>
+        {% for label in all_labels %}
+            {% if label.active == False %}
+                <h4>{{ label.name }}</h4>
+                <form action="/labels/{{ label.id }}/edit" method="GET">
+                <input type="submit" value="Edit">
+                </form>
+                <form action="/labels/{{ label.id }}/delete" method="POST">
+                <input type="submit" value="Delete">
+                </form>
+            {% endif %}
+        {% endfor %}
+
+</div>
+  
+
+{% endblock %}

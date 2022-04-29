@@ -39,3 +39,6 @@ INSERT INTO labels (name, active) VALUES ('Subscriptions', True);
 INSERT INTO labels (name, active) VALUES ('Drinks', True);
 INSERT INTO labels (name, active) VALUES ('Misc', True);
 INSERT INTO labels (name, active) VALUES ('Rent', True);
+
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (1, 1, 50);
+INSERT INTO transactions (retailer_id , label_id, value) VALUES (2, 3, 99);

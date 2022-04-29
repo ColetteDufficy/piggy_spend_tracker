@@ -1,15 +1,49 @@
 {% extends 'base.html' %}
 
-{% block retailers edit content %}
+{% block content %}
 
-<p>edit retailers form</p>
-<ul>
-    <li>edit retailer name field</li>
-    <li>deacivate/reactivate drop down menu option</li>
-    <br>
-    <p>update retailer button, which bring the user back to the retailers new page</p>
-</ul>
+
+<div class="list_of_all"> 
+
+<form class="form" action="/retailers/{{retailer.id}}" method="post">
+
+    <h4>Edit retailer details:</h4>
+    <div>
+    <label for="name"></label>
+    <input type="text" name="name" value="{{ retailer.name }}" placeholder="Edit retailer name here" id="name" required autofocus>
+    </div>   
     
-<p>list of all transactions and total on the right</p>
+<div>
+    <label for="active"></label>
+    <select id="active" name="active">
 
-{% endblock retailers edit content %}
+    <option value="true"
+    {% if retailer.active == True %} selected="selected" {% endif %}>
+    Activate
+    </option>
+
+    <option value="false"
+    {% if retailer.active == False %} selected="selected" {% endif %}>
+    Deactivate
+    </option>
+    </select>
+</div>
+
+    <input type="submit" value="Update">
+  </form> 
+<br>
+<br>
+
+
+<hr>
+
+<h4>List of retailers:</h4>
+
+<section class="list_of_all">
+{% for retailer in all_retailers %}
+      <h4>{{retailer.name}}</h4>
+</section>
+  
+{% endfor %}
+
+{% endblock %}

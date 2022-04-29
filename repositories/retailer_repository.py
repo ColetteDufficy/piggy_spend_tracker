@@ -3,6 +3,8 @@ from db.run_sql import run_sql
 from models.retailer import Retailer #importing the class of Retailer to be used in CRUD
 
 
+
+
 #SAVE
 def save(retailer):
     sql = """
@@ -23,6 +25,7 @@ def save(retailer):
 
 
 
+
 #SELECT_ALL
 def select_all():  
     retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL users to it.
@@ -34,7 +37,27 @@ def select_all():
         retailer = Retailer(
             row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
             row['active'], 
-            row['id'])
+            row['id']
+            )
+        retailers.append(retailer)
+    return retailers 
+ 
+ 
+ 
+ 
+#SELECT_ALL_ALPHABETICALLY
+def select_all_alphabetically():  
+    retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL users to it.
+
+    sql = "SELECT * FROM retailers ORDER BY name"
+    results = run_sql(sql)
+
+    for row in results:
+        retailer = Retailer(
+            row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
+            row['active'], 
+            row['id']
+            )
         retailers.append(retailer)
     return retailers 
     
@@ -55,7 +78,8 @@ def select(id):
         retailer = Retailer(
             result['name'], 
             result['active'], 
-            result['id'] )
+            result['id'] 
+            )
     return retailer
 
 

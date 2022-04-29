@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<hr>
+<h4>Add new retailer:</h4>
+<form class="form" action="/retailers" method="post">
+    <label for="name"></label>
+    <input type="text" name="name" placeholder="Enter retailer name here" id="name">
+    <input type="submit" value="Save">
+  </form> 
+<br>
+<br>
+
+<hr>
+<br>
+<br>
+<a href="/transactions">Return to new transaction</a>
+<br>
+<br>
+<hr>
+
+<h4>Edit retailer details:</h4>
+
+<div class="list_of_all">
+
+    <h4>Active Retailers</h4>
+        {% for retailer in all_retailers %}
+            {% if retailer.active == True %}
+            <h4>{{retailer.name}} </h4>
+                <form action="/retailers/{{retailer.id}}/edit" method="GET">
+                <input type="submit" value="Edit">
+                </form>
+                <form action="/retailers/{{ retailer.id }}/delete" method="POST">
+                <input type="submit" value="Delete">
+                </form>
+            {% endif %}
+        {% endfor %}
+
+        <hr>
+        <hr>
+    <h4>Inactive Retailers </h4>
+        {% for retailer in all_retailers %}
+            {% if retailer.active == False %}
+                <h4>{{retailer.name}}</h4>
+                <form action="/retailers/{{retailer.id}}/edit" method="GET">
+                <input type="submit" value="Edit">
+                </form>
+                <form action="/retailers/{{ retailer.id }}/delete" method="POST">
+                <input type="submit" value="Delete">
+                </form>
+            {% endif %}
+        {% endfor %}
+
+</div>
+  
+
+{% endblock %}

@@ -1,9 +1,9 @@
-# from flask import Flask, render_template, request, redirect
-# from flask import Blueprint
-# from models.museum import Museum
-# import repositories.museum_repository as museum_repository
+from flask import Flask, render_template, request, redirect
+from flask import Blueprint
+from models.label import Label
+import repositories.label_repository as label_repository
 
-# museums_blueprint = Blueprint("museums", __name__)
+labels_blueprint = Blueprint("labels", __name__)
 #blueprint is a place to store lots of routes. ie @app.routes
 
 
@@ -17,4 +17,51 @@
 # 7. DELETE
 
 # INDEX
-# GET '/tasks'
+# GET '/labels'
+# NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
+# this is the first step. See CREATE for the second step)
+@labels_blueprint.route("/labels")
+def labels():
+    labels = label_repository.select_all_alphabetically() #the way to access the DB is via the retailer_respository
+    return render_template("labels/index.html", all_labels = labels)
+
+
+# CREATE
+# POST '/labels'
+# post the form to fill the database
+@labels_blueprint.route("/labels", methods=['POST'])
+def create_label():
+  name = request.form['name']
+  
+  new_label = Label(name)          
+  label_repository.save(new_label)
+  return redirect("/labels")
+
+
+# EDIT (EDIT and UPDATE are combined)
+# Step 1:
+# GET '/labels/<id>/edit'
+@labels_blueprint.route("/labels/<id>/edit", methods=["GET"])
+def edit_label(id):
+    label = label_repository.select(id) #singular label, becasue we only want to identify ONE label to edit, by its id number
+    return render_template("labels/edit.html", label = label)
+
+
+# UPDATE
+# PUT '/labels/<id>'
+@labels_blueprint.route("/labels/<id>", methods=['POST'])
+def update_label(id):
+    name = request.form['name']
+    active = request.form['active']
+    
+    label = Label(name, active, id) 
+    label_repository.update(label)
+    return redirect('/labels')
+
+
+# DELETE
+# DELETE '/labels/<id>'
+@labels_blueprint.route("/labels/<id>/delete", methods=['POST'])
+def delete_label(id):
+    label_repository.delete(id)
+    return redirect('/labels')
