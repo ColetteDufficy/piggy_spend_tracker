@@ -1,3 +1,4 @@
+from controllers.transactions_controller import transactions
 from db.run_sql import run_sql
 
 from models.retailer import Retailer
@@ -62,6 +63,30 @@ def label(transaction):
     results = run_sql(sql, values)[0]
     label = Label(results['name'], results['active'], results['id'])
     return label
+
+
+
+#SELECT_BY_ID
+def select(id):
+    transaction = None
+    sql = """
+        SELECT * FROM transactions 
+        WHERE id = %s
+    """ 
+    values = [id] 
+    result = run_sql(sql, values)[0]
+    
+    if result is not None:
+        retailer = retailer_repository.select(result['retailer_id'])
+        label = label_repository.select(result['label_id']) 
+        transaction = Transaction(
+            retailer,
+            label, 
+            result['value'], 
+            result['id'] 
+            )
+    return transaction
+
 
 
 #DELETE_ALL
