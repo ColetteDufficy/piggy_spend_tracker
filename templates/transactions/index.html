@@ -48,27 +48,30 @@
   <br>
 <br>
 <hr>
-<h4>Total Spend so far this month: £££</h4>
+<h1>Total Spend so far this month: £{{total}}</h1>
+
+<hr>
+
+  <!-- end of total  -->
+
+<!-- <p> transaction.value </p> -->
 
 <h4>List of transactions:</h4>
 
 <div class="container_details">
 
-
     {% for transaction in all_transactions %}
-      
-    <div class="full_item">
-    
+
       <div class="details">
             
-              <p>{{ transaction.retailer.name }}</p>
-              <p>{{ transaction.label.name }}</p>
-              <p>£{{ transaction.value }}</p>        
-              
-             
+        <p>{{ transaction.retailer.name }}</p>
+        <p>{{ transaction.label.name }}</p>
+        <p>£{{ transaction.value }}</p>        
+            <form action="/transactions/{{transaction.id}}/delete" method="POST">
+            <input type="submit" value="Delete">
+            </form>
         </div>
-    
-      </div> 
+
     
      
       <hr>

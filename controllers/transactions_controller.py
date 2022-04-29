@@ -28,9 +28,14 @@ transactions_blueprint = Blueprint("transactions", __name__)
 @transactions_blueprint.route("/transactions")
 def transactions():
     transactions = transaction_repository.select_all() 
+    
+    total = 0
+    for transaction in transactions:
+        total += transaction.value
+    
     retailers = retailer_repository.select_all_alphabetically()
     labels = label_repository.select_all_alphabetically()
-    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels)
+    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels, total=total)
 
 
 
@@ -38,52 +43,52 @@ def transactions():
 # # CREATE
 # # POST '/transactions'
 # # post the form to fill the database
-# @transactions_blueprint.route("/transactions", methods=['POST'])
-# def create_transaction():
-#     retailer_id = request.form['retailer_id']
-#     label_id = request.form['label_id']
-#     value = request.form['value']
+@transactions_blueprint.route("/transactions", methods=['POST'])
+def create_transaction():
+    retailer_id = request.form['retailer_id']
+    label_id = request.form['label_id']
+    value = request.form['value']
         
-#     retailer = retailer_repository.select(retailer_id)
-#     label = label_repository.select(label_id)
-#     transaction = Transaction(retailer, label, value)
-#     transaction_repository.save(transaction)
-#     return redirect("/transactions")
+    retailer = retailer_repository.select(retailer_id)
+    label = label_repository.select(label_id)
+    transaction = Transaction(retailer, label, value)
+    transaction_repository.save(transaction)
+    return redirect("/transactions")
 
 
 
+# *********DONT NEED EDIT AND UPDATE AT TIS POINT******* 
+# EDIT (EDIT and UPDATE are combined)
+# GET '/transactions/<id>/edit'
+# Step 1:
+@transactions_blueprint.route("/transactions/<id>/edit", methods=["GET"])
+def edit_transaction(id):
+    transaction = transaction_repository.select(id) #singular transaction, becasue we only want to identify ONE transaction, by its id number
+    retailers = retailer_repository.select_all() #retailers is plural cos we want ALL retailers
+    labels = label_repository.select_all() 
+    return render_template("transactions/edit.html", transaction = transaction, all_retailers = retailers, all_labels = labels)
 
-# # *********DONT NEED EDIT AND UPDATE AT TIS POINT******* 
-# # # EDIT (EDIT and UPDATE are combined)
-# # # GET '/transactions/<id>/edit'
-# # # Step 1:
-# # @transactions_blueprint.route("/transactions/<id>/edit", methods=["GET"])
-# # def edit_transaction(id):
-# #     transaction = transaction_repository.select(id) #singular transaction, becasue we only want to identify ONE transaction, by its id number
-# #     retailers = retailer_repository.select_all() #retailers is plural cos we want ALL retailers
-# #     labels = label_repository.select_all() 
-# #     return render_template("transactions/edit.html", transaction = transaction, all_retailers = retailers, all_labels = labels)
 
 
-# # # UPDATE
-# # # PUT '/works/<id>'
-# # @transactions_blueprint.route("/transactions/<id>", methods=['POST'])
-# # def update_transaction(id):
-# #     title = request.form['title']
-# #     artist = request.form['artist']
-# #     year = request.form['year']
-# #     museum_id = request.form['museum_id']
+# UPDATE
+# PUT '/transactions/<id>'
+@transactions_blueprint.route("/transactions/<id>", methods=['POST'])
+def update_transaction(id):
+    retailer_id = request.form['retailer_id']
+    label_id = request.form['label_id']
+    value = request.form['value']
     
-# #     museum = museum_repository.select(museum_id) 
-# #     work = Work(title, artist, year, museum, id) 
-# #     work_repository.update(work)
-# #     return redirect('/works')
+    retailer = retailer_repository.select(retailer_id) 
+    label = label_repository.select(label_id) 
+    transaction = Transaction(retailer, label, value, id) 
+    transaction_repository.update(transaction)
+    return redirect('/transactions')
 
 
 
-# # DELETE
-# # DELETE '/works/<id>'
-# @transactions_blueprint.route("/transactions/<id>/delete", methods=['POST'])
-# def delete_transaction(id):
-#     transaction_repository.delete(id)
-#     return redirect('/tranactions')
+# DELETE
+# DELETE '/transactions/<id>/delete'
+@transactions_blueprint.route("/transactions/<id>/delete", methods=['POST'])
+def delete_transaction(id):
+    transaction_repository.delete(id)
+    return redirect('/transactions')

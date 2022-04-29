@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="list_of_all"> 
+
+<form class="form" action="/transactions/{{transaction.id}}" method="post">
+
+    <h4>Edit transaction details:</h4>
+    <div>
+    <label for="retailer_id"></label>
+    <input type="text" name="name" value="{{ retailer.name }}" placeholder="Edit retailer name here" id="name" required autofocus>
+    </div>   
+    
+<div>
+    <label for="active"></label>
+    <select id="active" name="active">
+
+    <option value="true"
+    {% if retailer.active == True %} selected="selected" {% endif %}>
+    Activate
+    </option>
+
+    <option value="false"
+    {% if retailer.active == False %} selected="selected" {% endif %}>
+    Deactivate
+    </option>
+    </select>
+</div>
+
+    <input type="submit" value="Update">
+  </form> 
+
+  
+
+{% endblock %}
+
+
+    
