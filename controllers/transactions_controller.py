@@ -2,6 +2,8 @@ from crypt import methods
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 
+import datetime
+
 from models.transaction import Transaction
 
 import repositories.retailer_repository as retailer_repository
@@ -62,14 +64,20 @@ def transactions():
 # # post the form to fill the database
 @transactions_blueprint.route("/transactions", methods=['POST'])
 def create_transaction():
+    date = request.form['date']
+    # Split the date into a list
+    split_date = date.split('-')
+  # create a new date object
+    date = datetime.date(int(split_date[0]), int(split_date[1]), int(split_date[2]))    
     retailer_id = request.form['retailer_id']
     label_id = request.form['label_id']
     value = request.form['value']
         
     retailer = retailer_repository.select(retailer_id)
     label = label_repository.select(label_id)
-    transaction = Transaction(retailer, label, value)
+    transaction = Transaction(date, retailer, label, value)
     transaction_repository.save(transaction)
+    print("hello")
     return redirect("/transactions")
 
 
@@ -91,13 +99,18 @@ def edit_transaction(id):
 # PUT '/transactions/<id>'
 @transactions_blueprint.route("/transactions/<id>", methods=['POST'])
 def update_transaction(id):
+    date = request.form['date']
+    # Split the date into a list
+    split_date = date.split('-')
+    # create a new date object
+    date = datetime.date(int(split_date[0]), int(split_date[1]), int(split_date[2]))
     retailer_id = request.form['retailer_id']
     label_id = request.form['label_id']
     value = request.form['value']
     
     retailer = retailer_repository.select(retailer_id) 
     label = label_repository.select(label_id) 
-    transaction = Transaction(retailer, label, value, id) 
+    transaction = Transaction(date, retailer, label, value, id) 
     transaction_repository.update(transaction)
     return redirect('/transactions')
 

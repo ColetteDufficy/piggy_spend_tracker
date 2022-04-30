@@ -11,13 +11,14 @@ import repositories.label_repository as label_repository #import everthing under
 #SAVE
 def save(transaction):
     sql = """
-        INSERT INTO transactions (retailer_id, label_id, value) 
-        VALUES (%s, %s, %s) 
+        INSERT INTO transactions (date, retailer_id, label_id, value) 
+        VALUES (%s, %s, %s, %s) 
         RETURNING *
     """
     #i dont insert a value ie '%s' for the id value here, because it hasnt been generated yet - because its a new item, and thereore doesnt have an id yet. Thats why its listed as None in the def init on reatiler.py file
     
     values = [
+        transaction.date, 
         transaction.retailer.id, 
         transaction.label.id, 
         transaction.value
@@ -39,6 +40,7 @@ def select_all():
         retailer = retailer_repository.select(row['retailer_id'])#this extra line is needed because were trying to extract the 'id' key, from the Retailer table, via the transactions table.
         label = label_repository.select(row['label_id'])#this extra line is needed because were trying to extract the 'id' key, from the Label table, via the transactions table0
         transaction = Transaction(
+            row['date'],
             retailer,
             label,
              row['value'],
@@ -79,6 +81,7 @@ def select(id):
         retailer = retailer_repository.select(result['retailer_id'])
         label = label_repository.select(result['label_id']) 
         transaction = Transaction(
+            result['date'], 
             retailer,
             label, 
             result['value'], 
@@ -109,10 +112,11 @@ def delete(id):
 def update(transaction):
     sql = """
         UPDATE transactions 
-        SET (retailer_id, label_id, value) = (%s, %s, %s) 
+        SET (retailer_id, label_id, value) = (%s, %s, %s, %s) 
         WHERE id = %s
     """
     values = [
+        transaction.date, 
         transaction.retailer.id, 
         transaction.label.id, 
         transaction.value, 

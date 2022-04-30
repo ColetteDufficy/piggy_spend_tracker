@@ -17,6 +17,7 @@ CREATE TABLE labels (
 
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
+    date DATE,
     retailer_id INT REFERENCES retailers(id) ON DELETE SET NULL,
     label_id INT REFERENCES labels(id) ON DELETE SET NULL,
     value Numeric(19,2) NOT NULL
@@ -40,6 +41,6 @@ INSERT INTO labels (name, active) VALUES ('Subscriptions', True);
 INSERT INTO labels (name, active) VALUES ('Drinks', True);
 INSERT INTO labels (name, active) VALUES ('Misc', True);
 
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (1, 1, 700);
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 4, 55);
-INSERT INTO transactions (retailer_id , label_id, value) VALUES (3, 2, 42.35);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-02-13', 1, 1, 700);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-04-11', 3, 4, 55);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-04-27', 3, 2, 42.35);
