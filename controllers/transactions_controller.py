@@ -34,8 +34,9 @@ def transactions():
         total += transaction.value
     
     retailers = retailer_repository.select_all_alphabetically()
+    retailers_active = retailer_repository.select_all_alphabetically_and_active()
     labels = label_repository.select_all_alphabetically()
-    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels, total=total)
+    return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, total=total)
 
 
 # # NEW

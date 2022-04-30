@@ -37,27 +37,6 @@
 
 <hr>
 
-<div class="list_of_all">
-<h4>All retailers:</h4>
-
-    <h4>Active Retailers</h4>
-        {% for retailer in all_retailers %}
-            {% if retailer.active == True %}
-            <p>{{retailer.name}} </p>
-            {% endif %}
-        {% endfor %}
-
-        <hr>
-        <hr>
-    <h4>Inactive Retailers </h4>
-        {% for retailer in all_retailers %}
-            {% if retailer.active == False %}
-                <h4>{{retailer.name}}</h4>
-            {% endif %}
-        {% endfor %}
-
-</div>
-  
 
 {% endblock %}
 

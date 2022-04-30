@@ -41,7 +41,9 @@ def select_all():
             )
         retailers.append(retailer)
     return retailers 
- 
+
+
+
  
  
  
@@ -50,6 +52,42 @@ def select_all_alphabetically():
     retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL users to it.
 
     sql = "SELECT * FROM retailers ORDER BY name"
+    results = run_sql(sql)
+
+    for row in results:
+        retailer = Retailer(
+            row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
+            row['active'], 
+            row['id']
+            )
+        retailers.append(retailer)
+    return retailers 
+
+
+
+#SELECT_ALL_ALPHABETICALLY_AND_ACTIVE
+def select_all_alphabetically_and_active():  
+    retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL reatilers to it.
+
+    sql = "SELECT * FROM retailers WHERE active=True ORDER BY name" #i only want ACTIVE=TRUE retailers
+    results = run_sql(sql)
+
+    for row in results:
+        retailer = Retailer(
+            row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
+            row['active'], 
+            row['id']
+            )
+        retailers.append(retailer)
+    return retailers 
+
+
+
+#SELECT_ALL_ALPHABETICALLY_AND_INACTIVE
+def select_all_alphabetically_and_inactive():  
+    retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL reatilers to it.
+
+    sql = "SELECT * FROM retailers WHERE active=False ORDER BY name" #i only want ACTIVE=TRUE retailers
     results = run_sql(sql)
 
     for row in results:

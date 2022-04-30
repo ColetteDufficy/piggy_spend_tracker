@@ -10,7 +10,7 @@
     <label for="retailer">Retailer name:</label>
     <br>
     <select id="retailer" name="retailer_id">
-      {% for retailer in all_retailers %}
+      {% for retailer in retailers_active %}
         <option value="{{ retailer.id }}">{{ retailer.name }}</option>
       {% endfor %}
     </select>

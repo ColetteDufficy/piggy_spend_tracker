@@ -18,14 +18,15 @@
 <br>
 <br>
 <hr>
+<!-- *************************************************bottom half of html page*************************** -->
 
 <h4>Edit retailer details:</h4>
 
 <div class="list_of_all">
 
     <h4>Active Retailers</h4>
-        {% for retailer in all_retailers %}
-            {% if retailer.active == True %}
+        {% for retailer in retailers_active %}
+            
             <h4>{{retailer.name}} </h4>
                 <form action="/retailers/{{retailer.id}}/edit" method="GET">
                 <input type="submit" value="Edit">
@@ -33,14 +34,14 @@
                 <form action="/retailers/{{ retailer.id }}/delete" method="POST">
                 <input type="submit" value="Delete">
                 </form>
-            {% endif %}
+          
         {% endfor %}
 
         <hr>
         <hr>
     <h4>Inactive Retailers </h4>
-        {% for retailer in all_retailers %}
-            {% if retailer.active == False %}
+        {% for retailer in retailers_inactive %}
+
                 <h4>{{retailer.name}}</h4>
                 <form action="/retailers/{{retailer.id}}/edit" method="GET">
                 <input type="submit" value="Edit">
@@ -48,7 +49,7 @@
                 <form action="/retailers/{{ retailer.id }}/delete" method="POST">
                 <input type="submit" value="Delete">
                 </form>
-            {% endif %}
+          
         {% endfor %}
 
 </div>

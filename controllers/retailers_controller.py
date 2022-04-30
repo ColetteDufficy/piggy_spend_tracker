@@ -25,7 +25,9 @@ retailers_blueprint = Blueprint("retailers", __name__)
 @retailers_blueprint.route("/retailers")
 def retailers():
     retailers = retailer_repository.select_all_alphabetically() #the way to access the DB is via the retailer_respository
-    return render_template("retailers/index.html", all_retailers = retailers)
+    retailers_active = retailer_repository.select_all_alphabetically_and_active() #the way to access the DB is via the retailer_respository
+    retailers_inactive = retailer_repository.select_all_alphabetically_and_inactive() #the way to access the DB is via the retailer_respository
+    return render_template("retailers/index.html", all_retailers = retailers, retailers_active = retailers_active, retailers_inactive=retailers_inactive)
 
 
 # CREATE
