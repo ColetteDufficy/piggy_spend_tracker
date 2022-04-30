@@ -50,20 +50,28 @@ def select_all():
     return transactions 
 
 
-# def retailer(transaction):
-#     sql = "SELECT * FROM retailers WHERE id = %s"
-#     values = [transaction.retailer.id]
-#     results = run_sql(sql, values)[0]
-#     retailer = Retailer(results['name'], results['active'], results['id'])
-#     return retailer
 
+# #SELECT_ALL_TRANSACTIONS_BY_ONE_RETAILER
+def select_all_transactions_by_retailer(retailer): 
+    transactions = [] 
 
-# def label(transaction):
-#     sql = "SELECT * FROM labels WHERE id = %s"
-#     values = [transaction.label.id]
-#     results = run_sql(sql, values)[0]
-#     label = Label(results['name'], results['active'], results['id'])
-#     return label
+    sql = "SELECT * FROM transactions WHERE retailer_id = %s"
+    values = [retailer.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        retailer = retailer_repository.select(row['retailer_id'])#this extra line is needed because were trying to extract the 'id' key, from the Retailer table, via the transactions table.
+        label = label_repository.select(row['label_id'])#this extra line is needed because were trying to extract the 'id' key, from the Label table, via the transactions table0
+        transaction = Transaction(
+            row['date'],
+            retailer,
+            label,
+            row['value'],
+            row['id']
+            )
+        transactions.append(transaction)
+    return transactions 
+
 
 
 
@@ -112,7 +120,7 @@ def delete(id):
 def update(transaction):
     sql = """
         UPDATE transactions 
-        SET (retailer_id, label_id, value) = (%s, %s, %s, %s) 
+        SET (date, retailer_id, label_id, value) = (%s, %s, %s, %s) 
         WHERE id = %s
     """
     values = [

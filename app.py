@@ -13,6 +13,8 @@ app.register_blueprint(transactions_blueprint)
 app.register_blueprint(retailers_blueprint)
 app.register_blueprint(labels_blueprint)
 
+
+# i need to include the 'total' counter method here, because i cant extract it out of the transaction blueprint 'container'
 @app.route('/')
 def home():
     transactions = transaction_repository.select_all() 
