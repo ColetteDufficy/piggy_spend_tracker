@@ -38,6 +38,21 @@ def transactions():
     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels, total=total)
 
 
+# # NEW
+# # GET '/transactions/new'
+# # # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
+# # # this is the first step. See CREATE for the second step)
+# @transactions_blueprint.route("/transactions/new")
+# def transactions():
+#     transactions = transaction_repository.select_all() 
+    
+#     total = 0
+#     for transaction in transactions:
+#         total += transaction.value
+    
+#     retailers = retailer_repository.select_all_alphabetically()
+#     labels = label_repository.select_all_alphabetically()
+#     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels, total=total)
 
 
 # # CREATE

@@ -8,26 +8,33 @@
 <form class="form" action="/transactions/{{transaction.id}}" method="post">
 
     <h4>Edit transaction details:</h4>
-    <div>
-    <label for="retailer_id"></label>
-    <input type="text" name="name" value="{{ retailer.name }}" placeholder="Edit retailer name here" id="name" required autofocus>
-    </div>   
+  
+      <label for="retailer">Retailer name:</label>
+      <br>
+      <select id="retailer" name="retailer_id">
+        {% for retailer in all_retailers %}
+          <option value="{{ transaction.retailer.name }}">{{ transaction.retailer.name }}</option>
+        {% endfor %}
+      </select>
+
+<br>
+      <label for="retailer">Label name:</label>
+      <br>
+      <select id="label" name="label_id">
+        {% for label in all_labels %}
+          <option value="{{ transaction.label.name }}">{{ transaction.label.name }}</option>
+        {% endfor %}
+      </select>
+
+<br>
+      <label for="value">Value amount: £</label>
+      <br>
+      <div>
+          <label for="value"></label>
+          <input type="number" min="1" step="0.01" name="value" value="value" placeholder="£" id="value" required >
+          </div>     
     
-<div>
-    <label for="active"></label>
-    <select id="active" name="active">
 
-    <option value="true"
-    {% if retailer.active == True %} selected="selected" {% endif %}>
-    Activate
-    </option>
-
-    <option value="false"
-    {% if retailer.active == False %} selected="selected" {% endif %}>
-    Deactivate
-    </option>
-    </select>
-</div>
 
     <input type="submit" value="Update">
   </form> 
