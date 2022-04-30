@@ -24,8 +24,7 @@
 <div class="list_of_all">
 
     <h4>Active Labels</h4>
-        {% for label in all_labels %}
-            {% if label.active == True %}
+        {% for label in labels_active %}
             <h4>{{label.name}} </h4>
                 <form action="/labels/{{label.id}}/edit" method="GET">
                 <input type="submit" value="Edit">
@@ -33,14 +32,12 @@
                 <form action="/labels/{{ label.id }}/delete" method="POST">
                 <input type="submit" value="Delete">
                 </form>
-            {% endif %}
         {% endfor %}
 
         <hr>
         <hr>
     <h4>Inactive Labels </h4>
-        {% for label in all_labels %}
-            {% if label.active == False %}
+        {% for label in labels_inactive %}
                 <h4>{{ label.name }}</h4>
                 <form action="/labels/{{ label.id }}/edit" method="GET">
                 <input type="submit" value="Edit">
@@ -48,7 +45,6 @@
                 <form action="/labels/{{ label.id }}/delete" method="POST">
                 <input type="submit" value="Delete">
                 </form>
-            {% endif %}
         {% endfor %}
 
 </div>

@@ -55,6 +55,40 @@ def select_all_alphabetically():
     return labels 
 
 
+
+#SELECT_ALL_ALPHABETICALLY_AND_ACTIVE
+def select_all_alphabetically_and_active():  
+    labels = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL labels to it.
+
+    sql = "SELECT * FROM labels WHERE active=True ORDER BY name" #i only want ACTIVE=TRUE labels
+    results = run_sql(sql)
+
+    for row in results:
+        label = Label(
+            row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
+            row['active'], 
+            row['id'])
+        labels.append(label)
+    return labels 
+
+
+
+#SELECT_ALL_ALPHABETICALLY_AND_ACTIVE
+def select_all_alphabetically_and_inactive():  
+    labels = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL labels to it.
+
+    sql = "SELECT * FROM labels WHERE active=False ORDER BY name" #i only want ACTIVE=TRUE labels
+    results = run_sql(sql)
+
+    for row in results:
+        label = Label(
+            row['name'], #these are taken from the sql table headers, as opposed to the class constructor names
+            row['active'], 
+            row['id'])
+        labels.append(label)
+    return labels 
+
+
 #SELECT_BY_ID
 def select(id):
     label = None

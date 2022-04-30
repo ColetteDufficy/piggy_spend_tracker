@@ -23,7 +23,9 @@ labels_blueprint = Blueprint("labels", __name__)
 @labels_blueprint.route("/labels")
 def labels():
     labels = label_repository.select_all_alphabetically() #the way to access the DB is via the retailer_respository
-    return render_template("labels/index.html", all_labels = labels)
+    labels_active = label_repository.select_all_alphabetically_and_active() #the way to access the DB is via the retailer_respository
+    labels_inactive = label_repository.select_all_alphabetically_and_inactive() #the way to access the DB is via the retailer_respository
+    return render_template("labels/index.html", all_labels = labels, labels_active=labels_active, labels_inactive=labels_inactive)
 
 
 # CREATE

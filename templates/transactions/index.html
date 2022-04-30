@@ -22,7 +22,7 @@
     <label for="label">Label name:</label>
     <br>
     <select id="label" name="label_id">
-      {% for label in all_labels %}
+      {% for label in labels_active %}
         <option value="{{ label.id }}">{{ label.name }}</option>
       {% endfor %}
     </select>
@@ -67,9 +67,9 @@
         <p>{{ transaction.retailer.name }}</p>
         <p>{{ transaction.label.name }}</p>
         <p>£{{ transaction.value }}</p>    
-        <form action="/transactions/{{transaction.id}}/edit" method="GET">
+        <!-- <form action="/transactions/&&transaction.id/edit&&" method="GET">
           <input type="submit" value="Edit">
-        </form>    
+        </form>     -->
         <form action="/transactions/{{transaction.id}}/delete" method="POST">
             <input type="submit" value="Delete">
         </form>
