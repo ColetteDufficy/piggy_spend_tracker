@@ -4,6 +4,9 @@ from controllers.transactions_controller import transactions_blueprint
 from controllers.retailers_controller import retailers_blueprint
 from controllers.labels_controller import labels_blueprint
 
+import repositories.transaction_repository as transaction_repository
+
+
 app = Flask(__name__)
 
 app.register_blueprint(transactions_blueprint)
@@ -12,7 +15,13 @@ app.register_blueprint(labels_blueprint)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    transactions = transaction_repository.select_all() 
+    
+    total = 0
+    for transaction in transactions:
+        total += transaction.value
+    
+    return render_template("index.html", all_transactions=transactions, total=total)
 
 if __name__ == '__main__':
     app.run(debug=True)
