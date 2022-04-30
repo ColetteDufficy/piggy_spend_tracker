@@ -23,5 +23,11 @@ def home():
     
     return render_template("index.html", all_transactions=transactions, total=total)
 
+
+
+@app.route('/log_off')
+def log_off():
+    return render_template("log_off.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
