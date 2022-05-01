@@ -1,53 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Kanit:wght@100;200;400;700&family=Montserrat:wght@100;300;400;600&display=swap');
+/* fonts imported */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;400;700&family=Mali:wght@200;400;500;600&family=Montserrat:wght@100;300;400;600&display=swap');
 
-* {
-    box-sizing: border-box;
-}
-
+/* set up for the entire page */
+* 
+{ box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;}
+    
+    /* header section on the base.html */
 body {
     font-family: 'Kanit', sans-serif;
     font-weight: 200;
     font-size: 16px;
     color: rgb(151, 150, 150);
-    margin: 0;
-    padding: 0;
-    border: 10px;
 }
 
-
 header {
-    border: red solid 2px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 30px;
     background-color: rgb(0, 0, 0);
 }
 
-a {
-    text-decoration: none;
-    font-weight: 200;
-}
+.pink_bar {
+    display: flex;
+    color: rgb(230, 73, 128);
+    background-color: rgb(230, 73, 128);
+    font-size: 3px;}
 
 #logo {
-  cursor: pointer;
-}
+    cursor: pointer;
+    padding: 10px 15px 5px 25px;}
 
 .nav_bar {
-    font-size: 16px;
+    font-size: 13px;
     list-style: none;
-    }
+    padding: 15px 30px 10px 10px;
+    font-weight: 100;}
 
-.nav_bar li {
-    display: inline-block;
-    padding: 0 20px;
-    font-weight: 100;
-    }
+.nav_bar a {
+    text-decoration: none;
+    font-weight: 200;
+    color: white;}
 
 .nav_bar li a:hover {
-    color: rgb(162, 163, 163);
+    color: rgb(230, 73, 128);
     }
 
-.nav_bar li a {
-    color: white;
+/* ****************** footer section fixed to the bottom of the window ******************  */
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: rgb(151, 150, 150);
+        font-size: 13px;
+        text-align: center;
+        padding: 10px;
     }
+
+
+
+
+
+/* ******************* MAIN INDEX PAGE LAYOUT ******************* */
+
+/* the entire top section including logo and all text */
+.index_page_top {
+    /* border: rgb(0, 34, 255) solid 5px; */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* a tag to transactions index.html  - see hover transition below */
+.index_page_top a {
+    /* margin-top: 0px; */
+    font-family: Kanit;
+    font-weight: 400;
+    font-size: 25px;
+    color: rgb(230, 73, 128);
+    text-decoration: none;
+}
+.index_page_top a:hover {
+    color: rgb(151, 150, 150)
+}
+
+
+/* container for the top section of text and watermark - excluding the A tag to transactions page */
+.main_total_amount {
+    /* border: green solid 5px; */
+    position: relative;
+    /* display: flex; */
+    /* font-size: 100px; */
+    color: black;
+    /* flex-direction: column; */
+    z-index: -50;
+}
+
+
+/* container for the top section of text  */
+.main_total_amount p {
+    /* margin-top: 0px; */
+    font-family: Kanit;
+    font-weight: 400;
+    font-size: 25px;
+    color: rgb(151, 150, 150);
+}
+
+/* container of snout watermark and TOTAL SPEND this month text */
+.snout_and_total_container {
+    /* border: pink solid 5px; */
+    position: relative;
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+}
+.snout_and_total_container h1 {
+    position: absolute;
+    height: 100%;
+    top: 25%;
+    left: -25px;
+    font-size: 50px;
+}
+
+
+/* snout watermark on main index page */
+/* the class is empty on the HTML page, URL is listed here */
+.snout_logo_watermark {
+    position: absolute;
+    background-image: url("./images/piggy_logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center;
+    opacity: 0.7;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* 3 piggies image at the bottom of the index page. to be left at the bottom, centralised */
+.piggie_image {
+    display: flex;
+    align-items: center; 
+    flex-direction: column; 
+    justify-content: flex-end;
+    padding-top: 60px;
+    height: 80%;
+}
+ 

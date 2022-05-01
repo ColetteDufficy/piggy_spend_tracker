@@ -12,7 +12,7 @@
 
   <!-- nav bar contents -->
   <header> 
-    <a id="logo" href="/"><img src="/static/images/nav_bar_logo.png" alt="piggy logo" width="100"></a>
+    <a id="logo" href="/"><img src="/static/images/nav_bar_logo.png" alt="piggy logo" width="80"></a>
     
     <nav>
       <ul class="nav_bar">
@@ -22,11 +22,16 @@
         <li><a href="/log_off">Log Off</a></li>
       </ul>
     </nav>
-
+    
   </header>
-
+  <p class="pink_bar">pink bar</p>
+  
     {% block content %}
     {% endblock %}
+
+  <div class="footer">
+    <p>&copy; Piggy 2022</p>
+  </div>
 
 </body>
 </html>
