@@ -5,23 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <title>Piggy</title>
+  <title>Piggy Spending Tracker</title>
 </head>
 
 <body>
 
-  <header>
-    <h4 id="logo">  <a href="/">piggy logo goes home</h4></a>
-      
+  <!-- nav bar contents -->
+  <header> 
+    <a id="logo" href="/"><img src="/static/images/nav_bar_logo.png" alt="piggy logo" width="100"></a>
+    
     <nav>
-      <ul class="menu">
+      <ul class="nav_bar">
         <li><a href="/retailers">Retailers</a></li>
         <li><a href="/labels">Labels</a></li>
         <li><a href="/transactions">Transactions</a></li>
         <li><a href="/log_off">Log Off</a></li>
-
       </ul>
     </nav>
+
   </header>
 
     {% block content %}
