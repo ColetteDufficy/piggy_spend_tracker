@@ -74,6 +74,30 @@ def select_all_transactions_by_retailer(retailer):
 
 
 
+# SELECT_ALL_TRANSACTIONS_BY_DATE
+def select_all_transactions_by_date(start_date, end_date): 
+    transactions = [] 
+
+    sql = "SELECT * FROM transactions WHERE date >= %s AND date <= %s"
+    # make sure to write the month first!
+    values = [start_date, end_date]
+    results = run_sql(sql, values)
+
+    for row in results:
+        retailer = retailer_repository.select(row['retailer_id'])#this extra line is needed because were trying to extract the 'id' key, from the Retailer table, via the transactions table.
+        label = label_repository.select(row['label_id'])#this extra line is needed because were trying to extract the 'id' key, from the Label table, via the transactions table0
+        transaction = Transaction(
+            row['date'],
+            retailer,
+            label,
+            row['value'],
+            row['id']
+            )
+        transactions.append(transaction)
+    return transactions 
+
+
+
 
 #SELECT_BY_ID
 def select(id):

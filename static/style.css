@@ -8,7 +8,7 @@
     padding: 0;
     border: 0;}
     
-    /* header section on the base.html */
+/* header section on the base.html */
 body {
     font-family: 'Kanit', sans-serif;
     font-weight: 200;
@@ -49,6 +49,7 @@ header {
     }
 
 /* ****************** footer section fixed to the bottom of the window ******************  */
+/* CURREntly causing probelms on the tabels pages - might remove???? */
     .footer {
         position: fixed;
         left: 0;
@@ -69,7 +70,7 @@ header {
 
 /* the entire top section including logo and all text */
 .index_page_top {
-    /* border: rgb(0, 34, 255) solid 5px; */
+    border: red solid 5px;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -79,7 +80,6 @@ header {
 
 /* a tag to transactions index.html  - see hover transition below */
 .index_page_top a {
-    /* margin-top: 0px; */
     font-family: Kanit;
     font-weight: 400;
     font-size: 25px;
@@ -93,57 +93,58 @@ header {
 
 /* container for the top section of text and watermark - excluding the A tag to transactions page */
 .main_total_amount {
-    /* border: green solid 5px; */
+    border: orange solid 5px;
     position: relative;
-    /* display: flex; */
-    /* font-size: 100px; */
+    display: flex;
+    font-size: 100px;
     color: black;
-    /* flex-direction: column; */
+    flex-direction: column;
     z-index: -50;
 }
 
 
 /* container for the top section of text  */
 .main_total_amount p {
-    /* margin-top: 0px; */
     font-family: Kanit;
     font-weight: 400;
     font-size: 25px;
-    color: rgb(151, 150, 150);
+    z-index: 100;
 }
 
 /* container of snout watermark and TOTAL SPEND this month text */
+.snout_and_total_container h1 {
+    border: green solid 5px;
+    position: absolute;
+    font-size: 50px;
+    top: 15%;
+    left: -15px;
+}
 .snout_and_total_container {
-    /* border: pink solid 5px; */
+    border: pink solid 5px;
     position: relative;
     height: 150px;
     width: 150px;
-    margin: 0 auto;
+    margin: auto;
     text-align: center;
-}
-.snout_and_total_container h1 {
-    position: absolute;
-    height: 100%;
-    top: 25%;
-    left: -25px;
-    font-size: 50px;
 }
 
 
 /* snout watermark on main index page */
 /* the class is empty on the HTML page, URL is listed here */
 .snout_logo_watermark {
-    position: absolute;
+    border: yellowgreen solid 5px;
     background-image: url("./images/piggy_logo.png");
     background-repeat: no-repeat;
     background-size: cover;
 	background-position: center;
-    opacity: 0.7;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    opacity: 0.6;
 }
+
 
 /* 3 piggies image at the bottom of the index page. to be left at the bottom, centralised */
 .piggie_image {
@@ -154,4 +155,75 @@ header {
     padding-top: 60px;
     height: 80%;
 }
- 
+
+
+
+
+/* *****************RETAIL CSS********************* */
+
+
+.container{
+    margin: 30px;
+  }
+  
+  .new_form {
+    display: flex;
+    width: 400px;
+    margin: 0 auto;
+    border: 1px rgb(46, 47, 47) solid;
+    padding: 20px;
+    font-size: 14px;
+    color: rgb(46, 47, 47) ;
+    flex-flow: row wrap;
+    align-items: center;
+    }
+  
+  
+  
+  /* Style the input fields */
+  .new_form input[type=text], input[type=number] {
+    border: 1px rgb(46, 47, 47) solid;
+    vertical-align: middle;
+    margin: 5px;
+    padding: 5px;
+    width: 350px;
+  } 
+
+
+  
+.full_item {
+    border: green 5px solid;
+    display: flex;
+    padding: 20px;
+    /* flex-flow: wrap;  */
+    align-items: center; 
+    /* border: 1px rgb(46, 47, 47) solid;  */
+    margin: 10px 0px;
+}
+.new_item_form {
+    border: blue 1px solid;
+    display: flex;
+    /* flex-flow: wrap;  */
+    align-items: center; 
+    }
+
+.container_details {
+    /* border: rgb(255, 0, 217) solid 5px; */
+    display: flex;
+    flex-flow: wrap; 
+    align-items: center; 
+    }
+    
+    .container_details h4 {
+    font-weight: 600;
+    font-style: normal;
+    color: rgb(46, 47, 47);
+    font-size: 16px;
+    }
+    
+    .container_details p {
+    font-weight: 300;
+    font-style: normal;
+    color: rgb(46, 47, 47);
+    font-size: 13px;
+    }
