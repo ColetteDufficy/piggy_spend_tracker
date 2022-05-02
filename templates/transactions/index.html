@@ -1,64 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
 
-<hr>
+
 <h4>Add new transaction:</h4>
 
 <div>
     <form class="form" action="/transactions" method="post">
 
-      <label for="date">Date</label>
-      <input type="date" name="date" id="date" required>
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date" required>
 
-      <br>
-      <br>
-
-    <label for="retailer">Retailer name:</label>
-    <br>
-    <select id="retailer" name="retailer_id">
-      {% for retailer in retailers_active %}
-        <option value="{{ retailer.id }}">{{ retailer.name }}</option>
-      {% endfor %}
-    </select>
-<br>
-<button> <a href="/retailers">Need to add a new retailer?</a> </button>
 <br>
 <br>
 
-    <label for="label">Label name:</label>
-    <br>
-    <select id="label" name="label_id">
-      {% for label in labels_active %}
-        <option value="{{ label.id }}">{{ label.name }}</option>
-      {% endfor %}
-    </select>
-    <br>
-<button> <a href="/labels">Need to add a new label?</a> </button>
+        <label for="retailer">Retailer name:</label>
+        <br>
+        <select id="retailer" name="retailer_id">
+          {% for retailer in retailers_active %}
+            <option value="{{ retailer.id }}">{{ retailer.name }}</option>
+          {% endfor %}
+        </select>
+<br>
+        <button> <a href="/retailers">Need to add a new retailer?</a> </button>
 <br>
 <br>
-<label for="value">Value amount: £</label>
-<br>
-<div>
-    <label for="value"></label>
-    <input type="number" min="1" step="0.01" name="value" value="value" placeholder="£" id="value" required >
-    </div>   
-    
 
-  </div>
+        <label for="label">Label name:</label>
+<br>
+        <select id="label" name="label_id">
+          {% for label in labels_active %}
+            <option value="{{ label.id }}">{{ label.name }}</option>
+          {% endfor %}
+        </select>
+<br>
+        <button> <a href="/labels">Need to add a new label?</a> </button>
+<br>
+<br>
+        <label for="value">Value amount: £</label>
+<br>
+        <div>
+          <label for="value"></label>
+          <input type="number" min="1" step="0.01" name="value" value="value" placeholder="£" id="value" required>
+        </div>   
+
+</div>
 <br>
     <input type="submit" value="Save">
-  </form> 
+</form> 
 
   <!-- end of top part -->
 
+
+
+
+  <!-- ***************** start of FILTER code ********* -->
+  <br>
+  <br>
+  <button> <a href="/transactions/filter">Filter transactions</a> </button>
+  <hr>
   <br>
 <br>
 <hr>
-<h1>Total Spend so far this month: £{{total}}</h1>
+<h1>Total Spend so far: £{{total}}</h1>
 
 <hr>
 
   <!-- end of total  -->
+
+  <hr>
+
 
 <!-- <p> transaction.value </p> -->
 

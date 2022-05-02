@@ -38,6 +38,7 @@ def transactions():
     retailers_active = retailer_repository.select_all_alphabetically_and_active()
     labels = label_repository.select_all_alphabetically()
     labels_active = label_repository.select_all_alphabetically_and_active()
+    
     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, labels_active=labels_active, total=total)
 
 
@@ -76,8 +77,54 @@ def create_transaction():
     label = label_repository.select(label_id)
     transaction = Transaction(date, retailer, label, value)
     transaction_repository.save(transaction)
-    print("hello")
     return redirect("/transactions")
+
+
+# FILTER
+# GET '/transactions/filter'
+@transactions_blueprint.route("/transactions/filter", methods=['GET'])
+def select_all_transactions(): 
+    transactions = transaction_repository.select_all() #transactions is plural cos we want ALL transactions
+    total = 0
+    for transaction in transactions:
+        total += transaction.value
+        
+    retailers = retailer_repository.select_all_alphabetically()
+    retailers_active = retailer_repository.select_all_alphabetically_and_active()
+    labels = label_repository.select_all_alphabetically()
+    labels_active = label_repository.select_all_alphabetically_and_active()
+        
+    return render_template("transactions/filter.html", all_transactions=transactions, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, labels_active=labels_active, total=total)
+
+
+
+
+# FILTER_BY_RETAILER
+# POST '/transactions/<retailer_id>/filter'
+@transactions_blueprint.route("/transactions/filter", methods = ['POST'])
+def filter_all_transactions_by_retailer():
+    filtered_retailer_id = request.form['retailer_id']
+    transactions_filtered_by_retailer = transaction_repository.select_all_transactions_by_retailer(filtered_retailer_id)
+    
+    total = 0
+    for transaction in transactions_filtered_by_retailer:
+        total += transaction.value
+        
+    retailers = retailer_repository.select_all_alphabetically()
+    retailers_active = retailer_repository.select_all_alphabetically_and_active()
+    labels = label_repository.select_all_alphabetically()
+    labels_active = label_repository.select_all_alphabetically_and_active()
+    
+    return render_template("transactions/filter.html", all_transactions=transactions_filtered_by_retailer, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, labels_active=labels_active, total=total)
+
+
+# @transactions_blueprint.route("/transactions/<retailer_id>/filter", methods=['POST'])
+# def filter_all_transactions_by_retailer(retailer_id): 
+#     transactions = transaction_repository.select_all_transactions_by_retailer(retailer_id) #transactions is plural cos we want ALL transactions
+    
+#     retailer = retailer_repository.select(id) #singular retailer, becasue we only want to identify ONE retailer, by its id number
+        
+#     return redirect("/transactions/filter", retailers_active = retailer, all_transactions=transactions)
 
 
 
@@ -94,24 +141,24 @@ def edit_transaction(id):
 
 
 
-# UPDATE
-# PUT '/transactions/<id>'
-@transactions_blueprint.route("/transactions/<id>", methods=['POST'])
-def update_transaction(id):
-    date = request.form['date']
-    # Split the date into a list
-    split_date = date.split('-')
-    # create a new date object
-    date = datetime.date(int(split_date[0]), int(split_date[1]), int(split_date[2]))
-    retailer_id = request.form['retailer_id']
-    label_id = request.form['label_id']
-    value = request.form['value']
+# # UPDATE
+# # PUT '/transactions/<id>'
+# @transactions_blueprint.route("/transactions/<id>", methods=['POST'])
+# def update_transaction(id):
+#     date = request.form['date']
+#     # Split the date into a list
+#     split_date = date.split('-')
+#     # create a new date object
+#     date = datetime.date(int(split_date[0]), int(split_date[1]), int(split_date[2]))
+#     retailer_id = request.form['retailer_id']
+#     label_id = request.form['label_id']
+#     value = request.form['value']
     
-    retailer = retailer_repository.select(retailer_id) 
-    label = label_repository.select(label_id) 
-    transaction = Transaction(date, retailer, label, value, id) 
-    transaction_repository.update(transaction)
-    return redirect('/transactions')
+#     retailer = retailer_repository.select(retailer_id) 
+#     label = label_repository.select(label_id) 
+#     transaction = Transaction(date, retailer, label, value, id) 
+#     transaction_repository.update(transaction)
+#     return redirect('/transactions')
 
 
 

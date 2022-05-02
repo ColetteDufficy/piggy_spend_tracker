@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h4>Filter transactions by choosing one option:</h4>
+
+<form class="form" action="/transactions/filter" method="post">
+
+    <label for="retailer">Retailer name:</label>
+<br>
+    <select id="retailer" name="retailer_id">
+        <option selected value> -- none -- </option>
+        {% for retailer in retailers_active %}
+        <option value="{{ retailer.id }}">{{ retailer.name }}</option>
+        {% endfor %}
+      </select>
+
+<br>
+<input type="submit" value="Filter Retailers">
+</form>
+
+
+<br>
+<p>OR</p>
+<br>
+
+<form class="form" action="/transactions/filter" method="post">
+    
+    <label for="retailer">Label name:</label>
+    <br>
+    <select id="label" name="label_id">
+        <option selected value> -- none -- </option>
+        {% for label in labels_active %}
+        <option value="{{ label.id }}">{{ label.name }}</option>
+        {% endfor %}
+    </select>
+</form>
+<input type="submit" value="Filter Labels">
+    
+    <br>
+
+
+<br>
+<br>
+<br>
+
+
+
+<!-- <p> transaction.value </p> -->
+<!-- list of trasnactions that are now filtered -->
+
+<h4>List of transactions:</h4>
+<h4>{{total}}</h4>
+<div class="container_details">
+    {% for transaction in all_transactions %}
+        <div class="details">
+            <p>{{ transaction.date.strftime("%d %b %Y") }}</p>
+            <p>{{ transaction.retailer.name }}</p>
+            <p>{{ transaction.label.name }}</p>
+            <p>£{{ transaction.value }}</p>    
+        </div>
+        <br>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
+

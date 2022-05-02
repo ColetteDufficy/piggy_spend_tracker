@@ -51,12 +51,36 @@ def select_all():
 
 
 
-# #SELECT_ALL_TRANSACTIONS_BY_ONE_RETAILER
-def select_all_transactions_by_retailer(retailer): 
+# FILTER_ALL_TRANSACTIONS_BY_ONE_RETAILER
+def select_all_transactions_by_retailer(retailer_id): 
     transactions = [] 
 
     sql = "SELECT * FROM transactions WHERE retailer_id = %s"
-    values = [retailer.id]
+    values = [retailer_id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        retailer = retailer_repository.select(row['retailer_id'])#this extra line is needed because were trying to extract the 'id' key, from the Retailer table, via the transactions table.
+        label = label_repository.select(row['label_id'])#this extra line is needed because were trying to extract the 'id' key, from the Label table, via the transactions table0
+        transaction = Transaction(
+            row['date'],
+            retailer,
+            label,
+            row['value'],
+            row['id']
+            )
+        transactions.append(transaction)
+    return transactions 
+
+
+
+
+# #SELECT_ALL_TRANSACTIONS_BY_ONE_LABEL
+def select_all_transactions_by_label(label_id): 
+    transactions = [] 
+
+    sql = "SELECT * FROM transactions WHERE label_id = %s"
+    values = [label_id]
     results = run_sql(sql, values)
 
     for row in results:
@@ -79,7 +103,7 @@ def select_all_transactions_by_date(start_date, end_date):
     transactions = [] 
 
     sql = "SELECT * FROM transactions WHERE date >= %s AND date <= %s"
-    # make sure to write the month first!
+    # make sure to write the month first, then the day, then the year!
     values = [start_date, end_date]
     results = run_sql(sql, values)
 
@@ -140,19 +164,20 @@ def delete(id):
     run_sql(sql, values)
     
 
-#UPDATE 
-def update(transaction):
-    sql = """
-        UPDATE transactions 
-        SET (date, retailer_id, label_id, value) = (%s, %s, %s, %s) 
-        WHERE id = %s
-    """
-    values = [
-        transaction.date, 
-        transaction.retailer.id, 
-        transaction.label.id, 
-        transaction.value, 
-        transaction.id
-        ]
-    run_sql(sql, values) 
+# function made redundant during development
+# #UPDATE 
+# def update(transaction):
+#     sql = """
+#         UPDATE transactions 
+#         SET (date, retailer_id, label_id, value) = (%s, %s, %s, %s) 
+#         WHERE id = %s
+#     """
+#     values = [
+#         transaction.date, 
+#         transaction.retailer.id, 
+#         transaction.label.id, 
+#         transaction.value, 
+#         transaction.id
+#         ]
+#     run_sql(sql, values) 
     
