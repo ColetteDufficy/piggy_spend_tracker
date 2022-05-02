@@ -58,20 +58,24 @@
 <div class="column"> 
   <div class="right_column"> 
   <h2>Total spend so far:      £{{total}}</h2>
-      <div class="transaction_listing">
         <h4>List of transactions:</h4>
+        <section class="transaction_wrapper">
+        <section class="details">
+
           {% for transaction in all_transactions %}
-              <p>{{ transaction.date.strftime("%d %b %Y") }}</p>
-              <p>{{ transaction.retailer.name }}</p>
-              <p>{{ transaction.label.name }}</p>
-              <p>£{{ transaction.value }}</p>    
+              <h6>{{ transaction.date.strftime("%d %b %Y") }}</h6>
+              <h2>{{ transaction.retailer.name }}</h2>
+              <h3>{{ transaction.label.name }}</h3>
+              <h5>£{{ transaction.value }}</h5>    
+              
+              <form action="/transactions/{{transaction.id}}/delete" method="POST">
+                <button><input type="submit" value="Delete">
+                </form></button>
+                
+              </section>
+                {% endfor %}
             
-            <form action="/transactions/{{transaction.id}}/delete" method="POST">
-              <button><input type="submit" value="Delete">
-            </form></button>
-      </div>
-      <!-- end of "transaction_listing" div -->
-    {% endfor %}
+          </section>
   </div>
   <!-- end of right_column div -->
 </div>

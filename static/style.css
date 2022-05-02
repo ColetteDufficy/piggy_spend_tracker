@@ -274,3 +274,53 @@ select {
     font-weight: 400;
     color: rgb(230, 73, 128);
 }
+
+/* .details {
+    border: green 2px solid;
+    display: flex;
+    padding: 40px;
+    flex-flow: wrap; 
+    align-items: center; 
+    border: 1px rgb(46, 47, 47) solid; 
+    margin: 10px 0px;
+  }  */
+
+.transaction_wrapper {
+    border: green 2px solid;
+    display: flex;
+    padding: 40px;
+    flex-flow: wrap; 
+    align-items: center; 
+    border: 1px rgb(46, 47, 47) solid; 
+    margin: 10px 0px;
+  } 
+
+  .details {
+    border: blue 1px solid;
+    display: flex;
+    flex-flow: wrap; 
+    align-items: center; 
+  }
+
+
+.transaction_wrapper h6{
+    color: black;
+    font-weight: 200;
+    font-size: 12px;
+    margin-top: 25px;
+}
+.transaction_wrapper h2{
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
+}
+.transaction_wrapper h3{
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
+}
+.transaction_wrapper h5{
+    color: rgb(230, 73, 128);
+    font-weight: 400;
+    font-size: 16px;
+}
