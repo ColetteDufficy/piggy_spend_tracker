@@ -51,7 +51,7 @@
 <!-- list of trasnactions that are now filtered -->
 
 <h4>List of transactions:</h4>
-<h4>{{total}}</h4>
+<h4>£{{total}}</h4>
 <div class="container_details">
     {% for transaction in all_transactions %}
         <div class="details">
@@ -59,7 +59,6 @@
             <p>{{ transaction.retailer.name }}</p>
             <p>{{ transaction.label.name }}</p>
             <p>£{{ transaction.value }}</p>    
-        </div>
         <br>
     {% endfor %}
 </div>

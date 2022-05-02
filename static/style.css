@@ -70,7 +70,7 @@ header {
 
 /* the entire top section including logo and all text */
 .index_page_top {
-    border: red solid 5px;
+    /* border: red solid 5px; */
     display: flex;
     align-items: center;
     padding: 10px;
@@ -93,7 +93,7 @@ header {
 
 /* container for the top section of text and watermark - excluding the A tag to transactions page */
 .main_total_amount {
-    border: orange solid 5px;
+    /* border: orange solid 5px; */
     position: relative;
     display: flex;
     font-size: 100px;
@@ -113,14 +113,14 @@ header {
 
 /* container of snout watermark and TOTAL SPEND this month text */
 .snout_and_total_container h1 {
-    border: green solid 5px;
+    /* border: green solid 5px; */
     position: absolute;
     font-size: 50px;
     top: 15%;
     left: -15px;
 }
 .snout_and_total_container {
-    border: pink solid 5px;
+    /* border: pink solid 5px; */
     position: relative;
     height: 150px;
     width: 150px;
@@ -132,7 +132,7 @@ header {
 /* snout watermark on main index page */
 /* the class is empty on the HTML page, URL is listed here */
 .snout_logo_watermark {
-    border: yellowgreen solid 5px;
+    /* border: yellowgreen solid 5px; */
     background-image: url("./images/piggy_logo.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -159,71 +159,118 @@ header {
 
 
 
-/* *****************RETAIL CSS********************* */
+/* ***************** RETAILER INDEX CSS ********************* */
 
-
-.container{
+.new_container {
     margin: 30px;
-  }
-  
-  .new_form {
+}
+
+.row {
     display: flex;
-    width: 400px;
-    margin: 0 auto;
-    border: 1px rgb(46, 47, 47) solid;
-    padding: 20px;
-    font-size: 14px;
-    color: rgb(46, 47, 47) ;
-    flex-flow: row wrap;
-    align-items: center;
-    }
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%
+}
   
-  
-  
-  /* Style the input fields */
-  .new_form input[type=text], input[type=number] {
-    border: 1px rgb(46, 47, 47) solid;
-    vertical-align: middle;
-    margin: 5px;
-    padding: 5px;
-    width: 350px;
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+/* Style the input fields */
+.column input[type=text] {
+    border: 1px black solid;
+    padding: 15px;
+    width: 220px;
+    padding: 5px 0px 5px 5px;
   } 
 
 
-  
-.full_item {
-    border: green 5px solid;
+
+.new_container h3 {
+    font-weight: 400;
+    font-size: 20px;
+    color: rgb(230, 73, 128);
+}
+
+.new_container h4 {
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.new_container h5 {
+    font-weight: 200;
+    font-size: 17px;
+}
+
+.new_container p {
+    font-weight: 200;
+    font-size: 13px;
+    color: black;
+}
+
+button {
     display: flex;
-    padding: 20px;
-    /* flex-flow: wrap;  */
-    align-items: center; 
-    /* border: 1px rgb(46, 47, 47) solid;  */
+    justify-content: center; 
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding: 0px 3px;
+    border: 1px rgb(151, 150, 150) solid;
+    font-size: 8px;
+}
+
+button a {
+    display: flex;
+    justify-content: center; 
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding: 0px 3px;
+    border: 1px rgb(151, 150, 150) solid;
+    font-size: 8px;
+}
+
+.return_link a {
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(230, 73, 128);
+    padding: 8px;
+    margin: 20px 0px;
+}
+
+select {
+    display: flex;
+    justify-content: center; 
+    margin-top: 6px;
+    padding: 0px 5px;
+    border: 1px rgb(151, 150, 150) solid;
+    font-size:14px;
+}
+
+
+.need_to_add  {
+    display: flex;
+    /* padding: 0px 3px; */
+    border: 1px rgb(84, 84, 84) solid;
+    padding: 15px;
+    width: 180px;
+    padding: 5px 0px 5px 5px;
     margin: 10px 0px;
 }
-.new_item_form {
-    border: blue 1px solid;
-    display: flex;
-    /* flex-flow: wrap;  */
-    align-items: center; 
-    }
 
-.container_details {
-    /* border: rgb(255, 0, 217) solid 5px; */
+.need_to_add a {
     display: flex;
-    flex-flow: wrap; 
-    align-items: center; 
-    }
-    
-    .container_details h4 {
-    font-weight: 600;
-    font-style: normal;
-    color: rgb(46, 47, 47);
-    font-size: 16px;
-    }
-    
-    .container_details p {
-    font-weight: 300;
-    font-style: normal;
-    color: rgb(46, 47, 47);
+    padding: 0px 3px;
+    text-decoration: none;
+}
+
+.need_to_add a p {
+    display: flex;
     font-size: 13px;
-    }
+    font-family: Kanit;
+    font-weight: 400;
+    color: rgb(230, 73, 128);
+}

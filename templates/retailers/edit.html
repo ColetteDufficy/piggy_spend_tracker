@@ -2,40 +2,34 @@
 
 {% block content %}
 
+<div class="new_container">
+    <div class="row">
+        <div class="column">
+            <div class="left_column"></div>
+                <form action="/retailers/{{retailer.id}}" method="post">
 
-<div class="list_of_all"> 
+                    <h3>Edit retailer details:</h3>
+                    <label for="name"></label>
+                    <input type="text" name="name" value="{{ retailer.name }}" placeholder="Edit retailer name here" id="name" required autofocus>
+                    <br>
+                    
+                    <label for="active"></label>
+                    <select id="active" name="active">
 
-<form class="form" action="/retailers/{{retailer.id}}" method="post">
+                    <option value="true"
+                    {% if retailer.active == True %} selected="selected" {% endif %}>
+                    Activate
+                    </option>
 
-    <h4>Edit retailer details:</h4>
-    <div>
-    <label for="name"></label>
-    <input type="text" name="name" value="{{ retailer.name }}" placeholder="Edit retailer name here" id="name" required autofocus>
-    </div>   
-    
-<div>
-    <label for="active"></label>
-    <select id="active" name="active">
+                    <option value="false"
+                    {% if retailer.active == False %} selected="selected" {% endif %}>
+                    Deactivate
+                    </option>
+                    </select>
 
-    <option value="true"
-    {% if retailer.active == True %} selected="selected" {% endif %}>
-    Activate
-    </option>
-
-    <option value="false"
-    {% if retailer.active == False %} selected="selected" {% endif %}>
-    Deactivate
-    </option>
-    </select>
-</div>
-
-    <input type="submit" value="Update">
-  </form> 
-<br>
-<br>
-
-
-<hr>
+                    <button><input type="submit" value="Update"></button>
+                </form> 
+            </div>
 
 
 {% endblock %}

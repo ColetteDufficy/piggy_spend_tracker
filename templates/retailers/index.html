@@ -1,62 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
 
-<hr>
-<section class="container">
-<section class="container_details">
-<section class="new_item_form">
-<div class="full_item">
-<h4>Add new retailer:</h4>
-<form class="form" action="/retailers" method="post">
-    <label for="name"></label>
-    <input type="text" name="name" placeholder="Enter retailer name here" id="name">
-    <input type="submit" value="Save">
-  </form> 
-</div>
-
-
-<hr>
-
-<a href="/transactions">Return to new transaction</a>
-
-</section>
-</section>
-</section>
-<hr>
-<!-- *******************bottom half of html page*************************** -->
-
-<h4>Edit retailer details:</h4>
-
-<div class="list_of_all">
-
-    <h4>Active Retailers</h4>
-        {% for retailer in retailers_active %}
+<div class="new_container">
+    <div class="row">
+        <div class="column">
+            <div class="left_column">
+                <h3>Add new retailer:</h3>
+                <form class="form" action="/retailers" method="post">
+                    <label for="name"></label>
+                    <input type="text" name="name" placeholder="Enter retailer name here" id="name" autofocus>
+                    
+                    <button><input type="submit" value="Save"></button>
+                </form> 
+                
+                <br>
+                <br>
+                <h3 class="return_link"><a href="/transactions">Return to new transaction</a></h3>
+            </div>  
+            <!-- end of the left_column class -->
+         </div>  
+        <!-- end of the column class -->
             
-            <h4>{{retailer.name}} </h4>
+            <!-- *******************bottom half of html page*************************** -->
+        <div class="column"> 
+            <div class="right_column"> 
+                <h3>Edit Retailer Details:</h3>
+                <h4>Active Retailers</h4>
+                {% for retailer in retailers_active %}
+                <p>{{retailer.name}} </p>
                 <form action="/retailers/{{retailer.id}}/edit" method="GET">
-                <input type="submit" value="Edit">
-                </form>
-                <!-- <form action="/retailers/{{ retailer.id }}/delete" method="POST">
-                <input type="submit" value="Delete"></form> -->
-          
-        {% endfor %}
-
-        <hr>
-        <hr>
-    <h4>Inactive Retailers </h4>
-        {% for retailer in retailers_inactive %}
-
-                <h4>{{retailer.name}}</h4>
+                    <button><input type="submit" value="Edit"> </form></button>
+                    
+                    {% endfor %}
+                    <br>
+                    <h3>--------------------</h3>
+                <h4>Inactive Retailers </h4>
+                {% for retailer in retailers_inactive %}
+                <p>{{retailer.name}}</p>
                 <form action="/retailers/{{retailer.id}}/edit" method="GET">
-                <input type="submit" value="Edit">
-                </form>
-                <!-- <form action="/retailers/{{ retailer.id }}/delete" method="POST">
-                <input type="submit" value="Delete">
-            </form> -->
-          
-        {% endfor %}
+                    <button><input type="submit" value="Edit"></form></button>
+                {% endfor %}
+            </div>            
+            <!-- end of the right_column class -->
+        </div>  
+        <!-- end of the 2nd column class -->
 
+    </div>  
+    <!-- end of the row class -->
 </div>
-  
+<!-- end of new container class -->
 
 {% endblock %}

@@ -1,104 +1,88 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="new_container">
+  <div class="row">
+      <div class="column">
+          <div class="left_column">
+            <form class="form" action="/transactions" method="post">
+            
+                <h3>Add new transaction:</h3>
+                <h5>Date:</h5>
+                <label for="date"></label>
+                <input type="date" name="date" id="date" required>
+                
+                <br>
+                <br>
+                <h5>Retailer name:</h5>
+                <label for="retailer"> </label>
+                <select id="retailer" name="retailer_id">
+                  {% for retailer in retailers_active %}
+                    <option value="{{ retailer.id }}">{{ retailer.name }}</option>
+                  {% endfor %}
+                </select>
+              <div class="need_to_add"><a href="/retailers"><p>Need to add a new retailer?</p></a> </div>
+              <br>
 
-<h4>Add new transaction:</h4>
+              <label for="label"> <h5>Label name:</h5></label>
+              <select id="label" name="label_id">
+                {% for label in labels_active %}
+                  <option value="{{ label.id }}">{{ label.name }}</option>
+                {% endfor %}
+              </select>
+              <div class="need_to_add"><a href="/labels"><p>Need to add a new label?</p></a> </div>
+<br>
+              <label for="value"><h5>Value amount: £</h5></label>
+              <div class="need_to_add">
+                <label for="value"></label>
+                <input type="number" min="1" step="0.01" name="value" value="value" placeholder="Enter value here £" id="value" required>
+              </div>
+                <button><input type="submit" value="Save"></button>
 
-<div>
-    <form class="form" action="/transactions" method="post">
+              </form> 
+                <!-- ***************** FILTER code ********* -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3 class="return_link"><a href="/transactions/filter">Filter transactions</a></h3>
 
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date" required>
+</div>  
+<!-- end of the left_column class -->
+</div>  
+<!-- end of the column class -->
 
-<br>
-<br>
 
-        <label for="retailer">Retailer name:</label>
-        <br>
-        <select id="retailer" name="retailer_id">
-          {% for retailer in retailers_active %}
-            <option value="{{ retailer.id }}">{{ retailer.name }}</option>
-          {% endfor %}
-        </select>
-<br>
-        <button> <a href="/retailers">Need to add a new retailer?</a> </button>
-<br>
-<br>
 
-        <label for="label">Label name:</label>
-<br>
-        <select id="label" name="label_id">
-          {% for label in labels_active %}
-            <option value="{{ label.id }}">{{ label.name }}</option>
-          {% endfor %}
-        </select>
-<br>
-        <button> <a href="/labels">Need to add a new label?</a> </button>
-<br>
-<br>
-        <label for="value">Value amount: £</label>
-<br>
-        <div>
-          <label for="value"></label>
-          <input type="number" min="1" step="0.01" name="value" value="value" placeholder="£" id="value" required>
-        </div>   
+<div class="column"> 
+  <div class="right_column"> 
+  <h2>Total spend so far:      £{{total}}</h2>
+      <div class="transaction_listing">
+        <h4>List of transactions:</h4>
+          {% for transaction in all_transactions %}
+              <p>{{ transaction.date.strftime("%d %b %Y") }}</p>
+              <p>{{ transaction.retailer.name }}</p>
+              <p>{{ transaction.label.name }}</p>
+              <p>£{{ transaction.value }}</p>    
+            
+            <form action="/transactions/{{transaction.id}}/delete" method="POST">
+              <button><input type="submit" value="Delete">
+            </form></button>
+      </div>
+      <!-- end of "transaction_listing" div -->
+    {% endfor %}
+  </div>
+  <!-- end of right_column div -->
+</div>
+<!-- end of column class div -->
 
 </div>
-<br>
-    <input type="submit" value="Save">
-</form> 
+<!-- end of row class div -->
 
-  <!-- end of top part -->
+</div>
+<!-- end of new_container class -->
 
-
-
-
-  <!-- ***************** start of FILTER code ********* -->
-  <br>
-  <br>
-  <button> <a href="/transactions/filter">Filter transactions</a> </button>
-  <hr>
-  <br>
-<br>
-<hr>
-<h1>Total Spend so far: £{{total}}</h1>
-
-<hr>
-
-  <!-- end of total  -->
-
-  <hr>
-
-
-<!-- <p> transaction.value </p> -->
-
-<h4>List of transactions:</h4>
-
-<div class="container_details">
-
-    {% for transaction in all_transactions %}
-
-      <div class="details">
-            
-        <p>{{ transaction.date.strftime("%d %b %Y") }}</p>
-        <p>{{ transaction.retailer.name }}</p>
-        <p>{{ transaction.label.name }}</p>
-        <p>£{{ transaction.value }}</p>    
-        <!-- <form action="/transactions/&&transaction.id/edit&&" method="GET">
-          <input type="submit" value="Edit">
-        </form>     -->
-        <form action="/transactions/{{transaction.id}}/delete" method="POST">
-            <input type="submit" value="Delete">
-        </form>
-        </div>
-
-    
-     
-      <hr>
-    
-    
-    {% endfor %}
-    </div>
   
 
 {% endblock %}
