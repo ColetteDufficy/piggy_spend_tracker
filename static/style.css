@@ -303,23 +303,6 @@ select {
     padding: 0px 0px 10px 0px;
 }
 
-/* .transaction_wrapper {
-    border: green 2px solid;
-    display: flex;
-    padding: 40px;
-    flex-flow: wrap; 
-    align-items: center; 
-    border: 1px rgb(46, 47, 47) solid; 
-    margin: 10px 0px; 
-  }   */
-
-  /* .details {
-    border: blue 1px solid;
-    display: flex;
-    flex-flow: wrap; 
-    align-items: center; 
-  } */
-
   .inner_details {
     border-top: 1px rgb(183, 181, 181) solid;
     display: flex;
@@ -327,7 +310,7 @@ select {
     align-items: center; 
     text-align: right;
     padding: 0px 30px 0px 0px;
-    justify-content: space-between;;
+    justify-content: space-between;
   }
 
 
@@ -346,6 +329,7 @@ select {
     color: black;
     font-weight: 400;
     font-size: 18px;
+    /* border: red 1px solid; */
 }
 .transaction_wrapper h5{
     color: rgb(230, 73, 128);

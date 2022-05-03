@@ -26,6 +26,7 @@ CREATE TABLE transactions (
 INSERT INTO retailers (name, active) VALUES ('Landlord', True);
 INSERT INTO retailers (name, active) VALUES ('Amazon', True);
 INSERT INTO retailers (name, active) VALUES ('Tesco', True);
+INSERT INTO retailers (name, active) VALUES ('Sainsburys', True);
 INSERT INTO retailers (name, active) VALUES ('Costa', True);
 INSERT INTO retailers (name, active) VALUES ('Disney+', True);
 INSERT INTO retailers (name, active) VALUES ('Netflix', True);
@@ -41,6 +42,12 @@ INSERT INTO labels (name, active) VALUES ('Subscriptions', True);
 INSERT INTO labels (name, active) VALUES ('Drinks', True);
 INSERT INTO labels (name, active) VALUES ('Misc', True);
 
-INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-02-13', 1, 1, 700);
-INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-04-11', 3, 4, 55);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-02-13', 1, 1, 690);
 INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-04-27', 3, 2, 42.35);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-04-11', 3, 4, 55.00);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-03', 3, 2, 29.13);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-01', 4, 2, 57.34);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-01', 4, 4, 50.00);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-01', 6, 6, 6.99);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-01', 7, 6, 7.99);
+INSERT INTO transactions (date, retailer_id , label_id, value) VALUES ('2022-05-01', 8, 3, 54.15);
