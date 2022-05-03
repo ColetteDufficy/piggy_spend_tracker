@@ -1,6 +1,6 @@
 from db.run_sql import run_sql
 
-from models.label import Label #importing the class of Retailer to be used in CRUD
+from models.label import Label #importing the class of Label to be used in CRUD
 
 
 #SAVE
@@ -10,8 +10,7 @@ def save(label):
         VALUES (%s, %s) 
         RETURNING *
     """
-    #i dont insert a value ie '%s' for the id value here, because it hasnt been generated yet - because its a new item, and thereore doesnt have an id yet. Thats why its listed as None in the def init on reatiler.py file
-    
+    #i dont insert a value ie '%s' for the id value here, because it hasnt been generated yet - because its a new item, and thereore doesnt have an id yet. Thats why its listed as None in the def init on label.py file
     values = [
         label.name, 
         label.active 
@@ -77,7 +76,7 @@ def select_all_alphabetically_and_active():
 def select_all_alphabetically_and_inactive():  
     labels = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL labels to it.
 
-    sql = "SELECT * FROM labels WHERE active=False ORDER BY name" #i only want ACTIVE=TRUE labels
+    sql = "SELECT * FROM labels WHERE active=False ORDER BY name" #i only want ACTIVE=FALSE labels
     results = run_sql(sql)
 
     for row in results:
@@ -100,8 +99,6 @@ def select(id):
     result = run_sql(sql, values)[0]
     
     if result is not None:
-# alterntaive line of code:
-    # if row is not None:
         label = Label(
             result['name'], 
             result['active'], 

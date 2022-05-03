@@ -10,11 +10,10 @@
                     <label for="name"></label>
                     <input type="text" name="name" placeholder="Enter retailer name here" id="name" autofocus>
                     
-                    <button><input type="submit" value="Save"></button>
+                    <button class="button"><input type="submit" value="Save"></button>
                 </form> 
                 
-                <br>
-                <br>
+               
                 <h3 class="return_link"><a href="/transactions">Return to new transaction</a></h3>
             </div>  
             <!-- end of the left_column class -->
@@ -28,17 +27,25 @@
                 <h4>Active Retailers</h4>
                 {% for retailer in retailers_active %}
                 <p>{{retailer.name}} </p>
-                <form action="/retailers/{{retailer.id}}/edit" method="GET">
-                    <button><input type="submit" value="Edit"> </form></button>
-                    
+                    <section class="right_column_buttons"> 
+                    <form action="/retailers/{{retailer.id}}/edit" method="GET">
+                        <button class="button" ><input type="submit" value="Edit"> </form></button>
+                    <form action="/retailers/{{retailer.id}}/delete" method="post">
+                        <button class="button"><input type="submit" value="Delete"> </form></button>
+                    </section>
                     {% endfor %}
-                    <br>
+
                     <h3>--------------------</h3>
                 <h4>Inactive Retailers </h4>
                 {% for retailer in retailers_inactive %}
                 <p>{{retailer.name}}</p>
+                <section class="right_column_buttons"> 
                 <form action="/retailers/{{retailer.id}}/edit" method="GET">
-                    <button><input type="submit" value="Edit"></form></button>
+                    <button class="button"><input type="submit" value="Edit"></form></button>
+                
+                <form action="/retailers/{{retailer.id}}/delete" method="post">
+                    <button class="button"><input type="submit" value="Delete"> </form></button>
+                </section>
                 {% endfor %}
             </div>            
             <!-- end of the right_column class -->

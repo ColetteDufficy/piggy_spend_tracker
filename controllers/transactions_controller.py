@@ -44,7 +44,6 @@ def transactions():
 
 # # NEW
 # # GET '/transactions/new'
-# # # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
 
 
 
@@ -54,9 +53,9 @@ def transactions():
 @transactions_blueprint.route("/transactions", methods=['POST'])
 def create_transaction():
     date = request.form['date']
-    # Split the date into a list
+    # Split the date into a list, using the hyphen
     split_date = date.split('-')
-  # create a new date object
+  # create a new date object, with datetime's built in method of 'date'
     date = datetime.date(int(split_date[0]), int(split_date[1]), int(split_date[2]))    
     retailer_id = request.form['retailer_id']
     label_id = request.form['label_id']
@@ -71,6 +70,7 @@ def create_transaction():
 
 # FILTER
 # GET '/transactions/filter'
+# using a get method, rather a post, to estabish what the user is choosing in terms of retailer/label choice.
 @transactions_blueprint.route("/transactions/filter", methods=['GET'])
 def select_all_transactions(): 
     # breakpoint()
@@ -93,21 +93,7 @@ def select_all_transactions():
     return render_template("transactions/filter.html", all_transactions=transactions, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, labels_active=labels_active, total=total)
 
 
-
-
-
-
-# @transactions_blueprint.route("/transactions/<retailer_id>/filter", methods=['POST'])
-# def filter_all_transactions_by_retailer(retailer_id): 
-#     transactions = transaction_repository.select_all_transactions_by_retailer(retailer_id) #transactions is plural cos we want ALL transactions
-    
-#     retailer = retailer_repository.select(id) #singular retailer, becasue we only want to identify ONE retailer, by its id number
-        
-#     return redirect("/transactions/filter", retailers_active = retailer, all_transactions=transactions)
-
-
-
-# *********DONT NEED EDIT AND UPDATE AT TIS POINT******* 
+# *********  DONT NEED EDIT AND UPDATE AT TIHS POINT  ******* 
 # EDIT (EDIT and UPDATE are combined)
 # GET '/transactions/<id>/edit'
 # Step 1:

@@ -22,7 +22,7 @@
                   {% endfor %}
                 </select>
               <div class="need_to_add"><a href="/retailers"><p>Need to add a new retailer?</p></a> </div>
-              <br>
+              
 
               <label for="label"> <h5>Label name:</h5></label>
               <select id="label" name="label_id">
@@ -31,21 +31,19 @@
                 {% endfor %}
               </select>
               <div class="need_to_add"><a href="/labels"><p>Need to add a new label?</p></a> </div>
-<br>
+
               <label for="value"><h5>Value amount: £</h5></label>
               <div class="need_to_add">
                 <label for="value"></label>
                 <input type="number" min="1" step="0.01" name="value" value="value" placeholder="Enter value here £" id="value" required>
               </div>
-                <button><input type="submit" value="Save"></button>
+                <button class="button"><input type="submit" value="Save"></button>
 
               </form> 
                 <!-- ***************** FILTER code ********* -->
 <br>
 <br>
-<br>
-<br>
-<br>
+
 <h3 class="return_link"><a href="/transactions/filter">Filter transactions</a></h3>
 
 </div>  
@@ -57,22 +55,25 @@
 
 <div class="column"> 
   <div class="right_column"> 
-  <h2>Total spend so far:      £{{total}}</h2>
-        <h4>List of transactions:</h4>
+    <h2>Total spend so far: £{{total}}</h2>
+    <h4>List of transactions:</h4>
         <section class="transaction_wrapper">
-        <section class="details">
-
+          <!-- <section class="details"> -->
+          
           {% for transaction in all_transactions %}
-              <h6>{{ transaction.date.strftime("%d %b %Y") }}</h6>
-              <h2>{{ transaction.retailer.name }}</h2>
+          <h6>{{ transaction.date.strftime("%d %b %Y") }}</h6>
+          
+          <section class="inner_details">
+            <h2>{{ transaction.retailer.name }}</h2>
               <h3>{{ transaction.label.name }}</h3>
               <h5>£{{ transaction.value }}</h5>    
               
               <form action="/transactions/{{transaction.id}}/delete" method="POST">
-                <button><input type="submit" value="Delete">
+                <button class="button"><input type="submit" value="Delete">
                 </form></button>
-                
               </section>
+                
+              <!-- </section> -->
                 {% endfor %}
             
           </section>

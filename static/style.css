@@ -179,6 +179,8 @@ header {
     flex: 1;
 }
 
+
+
 /* Style the input fields */
 .column input[type=text] {
     border: 1px black solid;
@@ -188,6 +190,11 @@ header {
   } 
 
 
+.button {
+    cursor: pointer;
+    margin: 0px 20px 0 0px;
+    width: 60px;
+}
 
 .new_container h3 {
     font-weight: 400;
@@ -212,6 +219,7 @@ header {
 }
 
 button {
+    cursor: pointer;
     display: flex;
     justify-content: center; 
     margin-top: 4px;
@@ -231,14 +239,19 @@ button a {
     font-size: 8px;
 }
 
+.return_link {
+    background-color: rgb(230, 73, 128);
+    padding: 8px;
+    margin: 40px 0px;
+    border: 100px;
+    width: 250px
+}
+
 .return_link a {
     font-weight: 400;
     font-size: 20px;
     color: white;
     text-decoration: none;
-    background-color: rgb(230, 73, 128);
-    padding: 8px;
-    margin: 20px 0px;
 }
 
 select {
@@ -275,31 +288,46 @@ select {
     color: rgb(230, 73, 128);
 }
 
-/* .details {
+.right_column p {
+    font-size: 15px;
+}
+
+.right_column h2 {
+    font-size: 27px;
+    color: rgb(230, 73, 128);
+}
+
+.right_column_buttons {
+    display: flex;
+    text-align: center;
+    padding: 0px 0px 10px 0px;
+}
+
+/* .transaction_wrapper {
     border: green 2px solid;
     display: flex;
     padding: 40px;
     flex-flow: wrap; 
     align-items: center; 
     border: 1px rgb(46, 47, 47) solid; 
-    margin: 10px 0px;
-  }  */
+    margin: 10px 0px; 
+  }   */
 
-.transaction_wrapper {
-    border: green 2px solid;
-    display: flex;
-    padding: 40px;
-    flex-flow: wrap; 
-    align-items: center; 
-    border: 1px rgb(46, 47, 47) solid; 
-    margin: 10px 0px;
-  } 
-
-  .details {
+  /* .details {
     border: blue 1px solid;
     display: flex;
     flex-flow: wrap; 
     align-items: center; 
+  } */
+
+  .inner_details {
+    border-top: 1px rgb(183, 181, 181) solid;
+    display: flex;
+    flex-flow: wrap; 
+    align-items: center; 
+    text-align: right;
+    padding: 0px 30px 0px 0px;
+    justify-content: space-between;;
   }
 
 

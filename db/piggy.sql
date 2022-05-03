@@ -18,8 +18,8 @@ CREATE TABLE labels (
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     date DATE,
-    retailer_id INT REFERENCES retailers(id) ON DELETE SET NULL,
-    label_id INT REFERENCES labels(id) ON DELETE SET NULL,
+    retailer_id INT REFERENCES retailers(id) ON DELETE CASCADE,
+    label_id INT REFERENCES labels(id) ON DELETE CASCADE,
     value Numeric(19,2) NOT NULL
 );
 

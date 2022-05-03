@@ -10,11 +10,9 @@
                         <label for="name"></label>
                         <input type="text" name="name" placeholder="Enter label name here" id="name" required autofocus>
                         
-                        <button><input type="submit" value="Save"></button>
+                        <button class="button"><input type="submit" value="Save"></button>
                     </form> 
 
-                    <br>
-                    <br>
                     <h3 class="return_link"><a href="/transactions">Return to new transaction</a></h3>
                 </div>  
                 <!-- end of the left_column class -->
@@ -28,20 +26,26 @@
                     <h3>Edit Label Details:</h3>
                     <h4>Active Labels</h4>
                     {% for label in labels_active %}
-                    <p>{{label.name}} </p>
-                    <form action="/labels/{{label.id}}/edit" method="GET">
-                    <button><input type="submit" value="Edit">
-                    </form></button>
-
-                    {% endfor %}
-                    <br>
-                    <h3>--------------------</h3>
+                        <p>{{label.name}} </p>
+                        <section class="right_column_buttons"> 
+                            <form action="/labels/{{label.id}}/edit" method="GET">
+                                <button class="button"><input type="submit" value="Edit"></form></button>
+                            <form action="/labels/{{label.id}}/delete" method="post">
+                                <button class="button"><input type="submit" value="Delete"> </form></button>
+                            </section>
+                            {% endfor %}
+                    
+            <h3>--------------------</h3>
                 <h4>Inactive Labels </h4>
                 {% for label in labels_inactive %}
                 <p>{{ label.name }}</p>
-                <form action="/labels/{{ label.id }}/edit" method="GET">
-                <button><input type="submit" value="Edit">
-                </form></button>
+                <section class="right_column_buttons"> 
+                    <form action="/labels/{{ label.id }}/edit" method="GET">
+                    <button class="button"><input type="submit" value="Edit">
+                    </form></button>
+                    <form action="/labels/{{ label.id }}/delete" method="post">
+                    <button class="button"><input type="submit" value="Delete"> </form></button>
+                </section>
                 {% endfor %}
             </div>            
             <!-- end of the right_column class -->

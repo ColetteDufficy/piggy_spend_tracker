@@ -43,7 +43,7 @@ class TestTask(unittest.TestCase):
     def test_label_is_deactivated(self):
         self.label.deactivate_label()
         self.assertEqual(False, self.label.active)
-    
+    # must run these tests together so we know that it has flipped to False and then flipped back to True.... otherwsie, active starts as true
     # def test_label_is_reactivated(self):
         self.label.rectivate_label()
         self.assertEqual(True, self.label.active)

@@ -87,7 +87,7 @@ def select_all_alphabetically_and_active():
 def select_all_alphabetically_and_inactive():  
     retailers = [] #the user cant see or acces the DB directly, so we first need to generate a new list to add ALL reatilers to it.
 
-    sql = "SELECT * FROM retailers WHERE active=False ORDER BY name" #i only want ACTIVE=TRUE retailers
+    sql = "SELECT * FROM retailers WHERE active=False ORDER BY name" #i only want ACTIVE=FALSE retailers
     results = run_sql(sql)
 
     for row in results:
@@ -138,7 +138,8 @@ def delete(id):
     values = [id]
     run_sql(sql, values)
     
-
+    
+    
 #UPDATE 
 def update(retailer):
     sql = """
