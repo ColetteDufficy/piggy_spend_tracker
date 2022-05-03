@@ -5,7 +5,7 @@
 
 <h4>Filter transactions by choosing one option:</h4>
 
-<form class="form" action="/transactions/filter" method="post">
+<form class="form" action="/transactions/filter" method="get">
 
     <label for="retailer">Retailer name:</label>
 <br>
@@ -25,7 +25,7 @@
 <p>OR</p>
 <br>
 
-<form class="form" action="/transactions/filter" method="post">
+<form class="form" action="/transactions/filter" method="get">
     
     <label for="retailer">Label name:</label>
     <br>
@@ -35,15 +35,11 @@
         <option value="{{ label.id }}">{{ label.name }}</option>
         {% endfor %}
     </select>
+    <input type="submit" value="Filter Labels">
 </form>
-<input type="submit" value="Filter Labels">
     
+<button><a href="/transactions/filter">Clear filters</a></button>
     <br>
-
-
-<br>
-<br>
-<br>
 
 
 

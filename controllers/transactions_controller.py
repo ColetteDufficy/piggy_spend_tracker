@@ -45,18 +45,7 @@ def transactions():
 # # NEW
 # # GET '/transactions/new'
 # # # NEW (NEW and CREATE are combined, because we need to create but we alos need to post it back to the DB
-# # # this is the first step. See CREATE for the second step)
-# @transactions_blueprint.route("/transactions/new")
-# def transactions():
-#     transactions = transaction_repository.select_all() 
-    
-#     total = 0
-#     for transaction in transactions:
-#         total += transaction.value
-    
-#     retailers = retailer_repository.select_all_alphabetically()
-#     labels = label_repository.select_all_alphabetically()
-#     return render_template("transactions/index.html", all_transactions=transactions, all_retailers=retailers, all_labels=labels, total=total)
+
 
 
 # # CREATE
@@ -84,7 +73,14 @@ def create_transaction():
 # GET '/transactions/filter'
 @transactions_blueprint.route("/transactions/filter", methods=['GET'])
 def select_all_transactions(): 
-    transactions = transaction_repository.select_all() #transactions is plural cos we want ALL transactions
+    # breakpoint()
+    if "retailer_id" in request.args:
+        transactions = transaction_repository.select_all_transactions_by_retailer(request.args['retailer_id'])#transactions is plural cos we want ALL transactions
+    elif "label_id" in request.args:
+        transactions = transaction_repository.select_all_transactions_by_label(request.args['label_id'])#transactions is plural cos we want ALL transactions
+    else:
+        transactions = transaction_repository.select_all()
+        
     total = 0
     for transaction in transactions:
         total += transaction.value
@@ -99,23 +95,6 @@ def select_all_transactions():
 
 
 
-# FILTER_BY_RETAILER
-# POST '/transactions/<retailer_id>/filter'
-@transactions_blueprint.route("/transactions/filter", methods = ['POST'])
-def filter_all_transactions_by_retailer():
-    filtered_retailer_id = request.form['retailer_id']
-    transactions_filtered_by_retailer = transaction_repository.select_all_transactions_by_retailer(filtered_retailer_id)
-    
-    total = 0
-    for transaction in transactions_filtered_by_retailer:
-        total += transaction.value
-        
-    retailers = retailer_repository.select_all_alphabetically()
-    retailers_active = retailer_repository.select_all_alphabetically_and_active()
-    labels = label_repository.select_all_alphabetically()
-    labels_active = label_repository.select_all_alphabetically_and_active()
-    
-    return render_template("transactions/filter.html", all_transactions=transactions_filtered_by_retailer, all_retailers=retailers, retailers_active=retailers_active, all_labels=labels, labels_active=labels_active, total=total)
 
 
 # @transactions_blueprint.route("/transactions/<retailer_id>/filter", methods=['POST'])
