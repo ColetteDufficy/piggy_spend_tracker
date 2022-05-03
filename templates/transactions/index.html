@@ -58,7 +58,6 @@
     <h2>Total spend so far: £{{total}}</h2>
     <h4>List of transactions:</h4>
         <section class="transaction_wrapper">
-          <!-- <section class="details"> -->
           
           {% for transaction in all_transactions %}
           <h6>{{ transaction.date.strftime("%d %b %Y") }}</h6>
@@ -73,7 +72,6 @@
                 </form></button>
               </section>
                 
-              <!-- </section> -->
                 {% endfor %}
             
           </section>

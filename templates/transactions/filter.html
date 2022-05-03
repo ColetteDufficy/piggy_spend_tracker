@@ -1,64 +1,80 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
+<div class="new_container">
+    <div class="row">
+        <div class="column">
+            <div class="left_column">
+                <form class="form" action="/transactions/filter" method="get">
 
-<h4>Filter transactions by choosing one option:</h4>
-
-<form class="form" action="/transactions/filter" method="get">
-
-    <label for="retailer">Retailer name:</label>
-<br>
-    <select id="retailer" name="retailer_id">
-        <option selected value> -- none -- </option>
-        {% for retailer in retailers_active %}
-        <option value="{{ retailer.id }}">{{ retailer.name }}</option>
-        {% endfor %}
-      </select>
-
-<br>
-<input type="submit" value="Filter Retailers">
-</form>
-
-
-<br>
-<p>OR</p>
-<br>
-
-<form class="form" action="/transactions/filter" method="get">
+                    <h3>Filter transactions by choosing <b>one</b> option:</h3>
+                    <h5>Retailer name:</h5>
+                    <label for="retailer"></label>
+                    <select id="retailer" name="retailer_id">
+                        <option selected value> -- none -- </option>
+                        {% for retailer in retailers_active %}
+                        <option value="{{ retailer.id }}">{{ retailer.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="filter_button"><input type="submit" value="Filter Retailers"></button>
+                </form>
+                
+                <h3>OR</h3>
+                
+                <form class="form" action="/transactions/filter" method="get">
+                    
+                    <h5>Label name:</h5>
+                    <label for="retailer"></label>
+                    <select id="label" name="label_id">
+                        <option selected value> -- none -- </option>
+                        {% for label in labels_active %}
+                        <option value="{{ label.id }}">{{ label.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="filter_button"><input type="submit" value="Filter Labels"></button>
+                </form>
     
-    <label for="retailer">Label name:</label>
-    <br>
-    <select id="label" name="label_id">
-        <option selected value> -- none -- </option>
-        {% for label in labels_active %}
-        <option value="{{ label.id }}">{{ label.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Filter Labels">
-</form>
-    
-<button><a href="/transactions/filter">Clear filters</a></button>
-    <br>
+            <h3 class="return_link"><a href="/transactions/filter">Clear filters</a></h3>
+
+</div>  
+<!-- end of the left_column class -->
+</div>  
+<!-- end of the column class -->
 
 
+<!-- ***************** list of transactions that are now filtered ******************** -->
 
-<!-- <p> transaction.value </p> -->
-<!-- list of trasnactions that are now filtered -->
+<div class="column"> 
+    <div class="right_column"> 
+        <h2>Total spend so far: £{{total}}</h2>
+        <h4>List of transactions:</h4>
+            <section class="transaction_wrapper">
 
-<h4>List of transactions:</h4>
-<h4>£{{total}}</h4>
-<div class="container_details">
-    {% for transaction in all_transactions %}
-        <div class="details">
-            <p>{{ transaction.date.strftime("%d %b %Y") }}</p>
-            <p>{{ transaction.retailer.name }}</p>
-            <p>{{ transaction.label.name }}</p>
-            <p>£{{ transaction.value }}</p>    
-        <br>
-    {% endfor %}
+                {% for transaction in all_transactions %}
+                <h6>{{ transaction.date.strftime("%d %b %Y") }}</h6>
+                
+                <section class="inner_details">
+                  <h2>{{ transaction.retailer.name }}</h2>
+                    <h3>{{ transaction.label.name }}</h3>
+                    <h5>£{{ transaction.value }}</h5>    
+                </section>
+                <!-- end of inner_details class -->
+                {% endfor %}
+            </div>
+
+        </section>
+        <!-- end of transaction_wrapper class -->
+
+    </div>
+    <!-- end of right_column div -->
+  </div>
+  <!-- end of column class div -->
+  
 </div>
+<!-- end of row class div -->
 
+</div>
+<!-- end of new_container class -->     
 
 {% endblock content %}
 
