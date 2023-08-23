@@ -3,12 +3,8 @@
 # Piggy
 
 
-https://github.com/ColetteDufficy/piggy_spend_tracker/assets/90625181/b444e578-3e26-4075-9470-097af893e822
-
-
-
 ![Homepage](screengrabs/homepage.png)
-![Transaction](screengrabs/transaction.png)
+
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -60,7 +56,7 @@ Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
 
 
-
+https://github.com/ColetteDufficy/piggy_spend_tracker/assets/90625181/b444e578-3e26-4075-9470-097af893e822
 
 ## Author
 
