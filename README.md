@@ -13,7 +13,7 @@
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-
+## Brief
 **Piggy** allows a single user to review their monthly spending. The user would like to be able to filter their spending by Retailer or by Transaction type eg groceries or petrol. Ultimately, she'd like to ube able to filter by date and have added features like saving any unspent monies at the end of the month. 
 TDD using Unittest was utilised in this web app. 
 
