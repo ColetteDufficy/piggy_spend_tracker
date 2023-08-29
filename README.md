@@ -32,18 +32,18 @@ After completing that step, in the command line:
 createdb piggy
 psql -d piggy -f db/piggy.sql 
 ```
-3. Then you can run the `console.py` file. This will create three tables and populate with data.
+<!-- 3. Then you can run the `console.py` file. This will create three tables and populate with data.
 ```
 python3 console.py
-```
+``` -->
 
-4. Install Flask
+3. Install Flask
 ```
 # terminal
 pip3 install Flask
 ```
 
-5. Run Flask
+4. Run Flask
 You can run your web application, with the following command:
 ```
 # terminal
